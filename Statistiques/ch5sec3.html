@@ -1,0 +1,654 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>5.3. Filtrage de Wiener &#8212; Traitement du Signal - Signaux et Systèmes Continus</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/C:\ProgramData\Anaconda3\envs\JB-Python39\Lib\site-packages\sphinxcontrib\icon\node_modules\@fortawesome\fontawesome-free\css\all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/C:\ProgramData\Anaconda3\envs\JB-Python39\Lib\site-packages\sphinxcontrib\icon\node_modules\@fortawesome\fontawesome-free\js\all.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch5sec3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.4. Preuve du théorème de Price" href="ch5sec4.html" />
+    <link rel="prev" title="5.2. Filtrage adapté" href="ch5sec2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Traitement du Signal - Signaux et Systèmes Continus - Home"/>
+    <script>document.write(`<img src="_static/N7solo.png" class="logo__image only-dark" alt="Traitement du Signal - Signaux et Systèmes Continus - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Traitement du Signal
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Mathématiques pour le signal</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Espaces fonctionnels d’intérêt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Produit de convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec3.html">1.3. Transformée de Fourier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Fonctions spéciales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec5.html">1.5. Formulaire et Tables des principales transformées de Fourier</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Signaux déterministes et aléatoires</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Signaux déterministes à énergie finie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec2.html">2.2. Signaux déterministes périodiques à puissance finie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Signaux déterministes non périodiques à puissance finie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Signaux aléatoires stationnaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec5.html">2.5. Propriétés de la fonction d’autocorrélation  et de la densité spectrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Untitled.html">2.6. Quizz</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Filtrage linéaire invariant par décalage</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Systèmes à temps continu: définitions et propriétés</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec2.html">3.2. Filtrage des signaux déterministes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Filtrage des signaux aléatoires</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Traitements non-linéaires</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Cas des signaux déterministes - exemple du quadrateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Cas des signaux aléatoires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec3.html">4.3. Quantification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Pour aller plus loin</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch5sec1.html">5.1. Ergodicité</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Filtrage adapté</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.3. Filtrage de Wiener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec4.html">5.4. Preuve du théorème de Price</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">6. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ch-poulliat.github.io/Cours-Signal-Part-I/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://ch-poulliat.github.io/Cours-Signal-Part-I/intro.html/issues/new?title=Issue%20on%20page%20%2Fch5sec3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch5sec3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Filtrage de Wiener</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">5.3.1. Définition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expression-du-filtre">5.3.2. Expression du filtre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.3.3. Expression du filtre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">5.3.4. Applications</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="filtrage-de-wiener">
+<h1><span class="section-number">5.3. </span>Filtrage de Wiener<a class="headerlink" href="#filtrage-de-wiener" title="Permalink to this heading">#</a></h1>
+<section id="definition">
+<h2><span class="section-number">5.3.1. </span>Définition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
+<p>Le filtre de Wiener est un filtre qui permet de débruiter un signal aléatoire stationnaire de densité spectrale de puissance connue  noyé dans un bruit additif supposé également stationnaire. On considère donc deux processus aléatoires stationnaires <span class="math notranslate nohighlight">\(I(t)\)</span> et <span class="math notranslate nohighlight">\(B(t)\)</span>  de moyennes nulles (ce qui simplifie un peu l’analyse) <span class="math notranslate nohighlight">\(E[B(t)]=E[I(t)]=0\)</span>, de fonctions d’autocorrélation <span class="math notranslate nohighlight">\(R_I(\tau), R_B(\tau)\)</span> et de densités spectrales de puissance <span class="math notranslate nohighlight">\(s_I(f)\)</span> et <span class="math notranslate nohighlight">\(s_B(f)\)</span>. On suppose qu’on peut observer</p>
+<div class="math notranslate nohighlight">
+\[
+X(t)=I(t)+B(t), \quad t \in \Delta \subset \mathbb{R}
+\]</div>
+<p>et on cherche la <strong>meilleure estimation</strong> de <span class="math notranslate nohighlight">\(I(t)\)</span> notée <span class="math notranslate nohighlight">\(\widehat{I}(t)\)</span> obtenue par filtrage linéaire de <span class="math notranslate nohighlight">\(X(t)\)</span>.</p>
+</section>
+<section id="expression-du-filtre">
+<h2><span class="section-number">5.3.2. </span>Expression du filtre<a class="headerlink" href="#expression-du-filtre" title="Permalink to this heading">#</a></h2>
+<p>D’après le principe de la projection orthogonale illustré sur la figure ci-dessous,</p>
+<img alt="filt_wiener" class="align-center" src="_images/figure_Wiener.png" />
+<p>la solution de ce problème vérifie les <em><strong>équations normales</strong></em> définies par</p>
+<div class="math notranslate nohighlight">
+\[
+E\left\{ \left[I(t)- \widehat{I}(t) \right] X^{\ast}(u)\right\}=0 \quad \forall u
+\]</div>
+<p>ou</p>
+<div class="math notranslate nohighlight">
+\[
+E\left[I(t) I^{\ast}(u)\right] = E\left[\widehat{I}(t)
+X^{\ast}(u)\right] \quad \forall u \label{normal}
+\]</div>
+<p>En remarquant que <span class="math notranslate nohighlight">\(E\left[I(t) I^{\ast}(u)\right] =R_I(t-u)\)</span> et que <span class="math notranslate nohighlight">\(\widehat{I}(t)=X(t)*h(t)=\int X(v) h(t-v)dv\)</span>, où <span class="math notranslate nohighlight">\(h(t)\)</span> est la réponse impulsionnelle recherchée, on obtient</p>
+<div class="math notranslate nohighlight">
+\[
+E\left\{ \left[ \widehat{I}(t) X^{\ast} (u)\right]\right\} = \int h(t-v) R_X(v-u)dv  =  \int h(x) R_X(t-u-x)dx.
+\]</div>
+<p>Les équations normales permettent alors d’obtenir</p>
+<div class="math notranslate nohighlight">
+\[
+ R_I(y)=\int h(x) R_X(y-x)dx = h(y) \ast R_X(y) \quad \forall y.
+\]</div>
+<p>On en déduit l’expression de la transmittance du filtre recherché <span class="math notranslate nohighlight">\(H(f)\)</span> en fonction des densités spectrales de puissance de <span class="math notranslate nohighlight">\(I(t)\)</span> et de <span class="math notranslate nohighlight">\(B(t)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+H(f)=\frac{s_I(f)}{s_X(f)} = \frac{s_I(f)}{s_I(f)+s_B(f)}
+\]</div>
+</section>
+<section id="id1">
+<h2><span class="section-number">5.3.3. </span>Expression du filtre<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>L’erreur d’estimation entre <span class="math notranslate nohighlight">\(I(t)\)</span> et <span class="math notranslate nohighlight">\( \widehat{I}(t)\)</span> possède une expression très simple qui est définie par</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma^2=E\left[ |I(t)- \widehat{I}(t) |^2 \right]  = \int \frac{s_I(f) s_B(f)}{s_I(f)+s_B(f)} df
+\]</div>
+<p>En effet</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray*}
+\sigma^2 &amp;=&amp; E\left[ |I(t)- \widehat{I}(t) |^2 \right] \cr
+ &amp;=&amp; E\left\{ \left[I(t)- \widehat{I}(t)\right]  I^{\ast}(t) \right\} \quad \text{(car $I(t)- \widehat{I}(t)$ est orthogonal à $ \widehat{I}(t)$)} \cr 
+ &amp;=&amp;  R_I(0)-E\left[\widehat{I}(t) I^{\ast}(t) \right]
+\end{eqnarray*}
+\]</div>
+<p>Le second terme de cette égalité peut se calculer simplement comme suit, en utilisant <span class="math notranslate nohighlight">\(\widehat{I}(t)=X(t)*h(t)=\int X(u) h(t-u)dv\)</span> et <span class="math notranslate nohighlight">\(X(u)=I(u)+B(u)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray*}
+E\left[\widehat{I}(t) I^{\ast}(t) \right] &amp;=&amp; \int h(t-u) E\left[
+I(u) I^{\ast}(t) \right] du + \int h(t-u) E\left[ B(u)
+I^{\ast}(t) \right] \cr
+ &amp;=&amp;
+\int h(x) R_I^{\ast}(x)dx
+\end{eqnarray*}
+\]</div>
+<p>d’où</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray*}
+\sigma^2 = \int s_I(f)df  - \int H(f) s_I(f)df = \int \frac{s_I(f) s_B(f)}{s_I(f)+s_B(f)} df
+\end{eqnarray*}
+\]</div>
+<p>On peut faire les remarques suivantes :</p>
+<ul class="simple">
+<li><p>l’erreur est nulle lorsqu’il n’y a pas de bruit (i.e., lorsque <span class="math notranslate nohighlight">\(s_b(f)=0\)</span>)</p></li>
+<li><p>l’erreur est nulle lorsque les DSP du signal et du bruit ont des supports disjoints  (ce qui implique <span class="math notranslate nohighlight">\(s_I(f)s_B(f)=0\)</span>)</p></li>
+</ul>
+</section>
+<section id="applications">
+<h2><span class="section-number">5.3.4. </span>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h2>
+<p>Une application classique du filtre de Wiener est le débruitage d’images. Quelques résultats obtenus avec cette méthode sont présentés dans les images ci-dessous. Pour plus de détails concernant le filtre de Wiener, le lecteur pourra consulter l’ouvrage de Zaknich <span id="id2">[<a class="reference internal" href="biblio.html#id8" title="A. Zaknich. Principles of Adaptive Filters and Self-Learning Systems. Springer, London, 2005.">Zaknich, 2005</a>]</span>.</p>
+<img alt="original_image" class="align-center" src="_images/original_image.png" />
+<img alt="noisy_image" class="align-center" src="_images/noisy_image.png" />
+<img alt="denoised_image" class="align-center" src="_images/denoised_image.png" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch5sec2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Filtrage adapté</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch5sec4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.4. </span>Preuve du théorème de Price</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">5.3.1. Définition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expression-du-filtre">5.3.2. Expression du filtre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.3.3. Expression du filtre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">5.3.4. Applications</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By J-Y. Tourneret et C. Poulliat
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://ch-poulliat.github.io/Cours-TS-SN1A-N7/intro.html"> Traitement du Signal</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

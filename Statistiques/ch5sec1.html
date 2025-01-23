@@ -1,0 +1,870 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>5.1. Ergodicité &#8212; Traitement du Signal - Signaux et Systèmes Continus</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/C:\ProgramData\Anaconda3\envs\JB-Python39\Lib\site-packages\sphinxcontrib\icon\node_modules\@fortawesome\fontawesome-free\css\all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/C:\ProgramData\Anaconda3\envs\JB-Python39\Lib\site-packages\sphinxcontrib\icon\node_modules\@fortawesome\fontawesome-free\js\all.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch5sec1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.2. Filtrage adapté" href="ch5sec2.html" />
+    <link rel="prev" title="5. Pour aller plus loin" href="ch5intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Traitement du Signal - Signaux et Systèmes Continus - Home"/>
+    <script>document.write(`<img src="_static/N7solo.png" class="logo__image only-dark" alt="Traitement du Signal - Signaux et Systèmes Continus - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Traitement du Signal
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Mathématiques pour le signal</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Espaces fonctionnels d’intérêt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Produit de convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec3.html">1.3. Transformée de Fourier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Fonctions spéciales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec5.html">1.5. Formulaire et Tables des principales transformées de Fourier</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Signaux déterministes et aléatoires</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Signaux déterministes à énergie finie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec2.html">2.2. Signaux déterministes périodiques à puissance finie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Signaux déterministes non périodiques à puissance finie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Signaux aléatoires stationnaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec5.html">2.5. Propriétés de la fonction d’autocorrélation  et de la densité spectrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Untitled.html">2.6. Quizz</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Filtrage linéaire invariant par décalage</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Systèmes à temps continu: définitions et propriétés</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec2.html">3.2. Filtrage des signaux déterministes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Filtrage des signaux aléatoires</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Traitements non-linéaires</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Cas des signaux déterministes - exemple du quadrateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Cas des signaux aléatoires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec3.html">4.3. Quantification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Pour aller plus loin</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.1. Ergodicité</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Filtrage adapté</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec3.html">5.3. Filtrage de Wiener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec4.html">5.4. Preuve du théorème de Price</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">6. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ch-poulliat.github.io/Cours-Signal-Part-I/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://ch-poulliat.github.io/Cours-Signal-Part-I/intro.html/issues/new?title=Issue%20on%20page%20%2Fch5sec1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch5sec1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ergodicité</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalites">5.1.1. Généralités</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemples">5.1.2. Exemples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoreme">5.1.3. Théorème</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultats-interessants">5.1.4. Résultats intéressants</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="ergodicite">
+<h1><span class="section-number">5.1. </span>Ergodicité<a class="headerlink" href="#ergodicite" title="Permalink to this heading">#</a></h1>
+<section id="generalites">
+<h2><span class="section-number">5.1.1. </span>Généralités<a class="headerlink" href="#generalites" title="Permalink to this heading">#</a></h2>
+<p>Lorsqu’on veut montrer qu’un signal aléatoire <span class="math notranslate nohighlight">\(X(t)\)</span> est stationnaire (au sens large), il faut vérifier que <span class="math notranslate nohighlight">\(E[X(t)]\)</span> et <span class="math notranslate nohighlight">\(E[X(t)X(t-\tau)\)</span> sont deux quantités indépendantes du temps, ce qui nécessite en pratique de calculer des moyennes statistiques à partir de plusieurs réalisations de <span class="math notranslate nohighlight">\(X(t)\)</span> notées <span class="math notranslate nohighlight">\(X^{(i)}(t)\)</span>, <span class="math notranslate nohighlight">\(i=1,...,N\)</span> où <span class="math notranslate nohighlight">\(N\)</span> est le nombre de réalisations (appelées parfois trajectoires) de <span class="math notranslate nohighlight">\(X(t)\)</span>. Par exemple pour la moyenne, on peut déterminer la <em><strong>moyenne statistique</strong></em> de <span class="math notranslate nohighlight">\(X(t)\)</span> définie par</p>
+<div class="math notranslate nohighlight">
+\[
+m(t)= \frac{1}{N} \sum_{i=1}^{N} X^{(i)}(t)
+\]</div>
+<p>avec un nombre de réalisations <span class="math notranslate nohighlight">\(N\)</span> suffisamment grand (pour que <span class="math notranslate nohighlight">\(m(t)\)</span> soit une bonne approximation de <span class="math notranslate nohighlight">\(E[X(t)]\)</span>, en vertu de la loi des grands nombres) et vérifier que cette quantité ne fluctue pas trop  et peut donc être considérée comme une constante. Mais cette approche nécessite d’avoir à notre disposition plusieurs réalisations de <span class="math notranslate nohighlight">\(X(t)\)</span>, ce qui peut être contraignant. Dans les applications pratiques, il est évidemment plus simple de déterminer la moyenne de <span class="math notranslate nohighlight">\(X(t)\)</span> à l’aide d’une <em><strong>moyenne temporelle</strong></em></p>
+<div class="math notranslate nohighlight">
+\[
+\bar{X}_T= \frac{1}{T} \sum_{i=1}^{T} X(t_i)
+\]</div>
+<p>à partir d’une seule réalisation de <span class="math notranslate nohighlight">\(X(t)\)</span>, où les instants <span class="math notranslate nohighlight">\(t_i\)</span> sont les instants d’échantillonnage de <span class="math notranslate nohighlight">\(X(t)\)</span>. La notion d’ergodicité (au premier ordre pour la moyenne, au second ordre pour la fonction d’autocorrélation, …) précise dans quelles conditions on peut estimer la moyenne statistique de <span class="math notranslate nohighlight">\(X(t)\)</span> à l’aide de sa moyenne temporelle <span class="math notranslate nohighlight">\(\bar{X}_T\)</span>.</p>
+<p>On dit qu’un signal aléatoire à temps continu <span class="math notranslate nohighlight">\(X(t)\)</span> est <em><strong>ergodique au premier ordre</strong></em> si</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{T}=\frac{1}{T}\int_{0}^{T}X(u)du \overset{\textrm{mq}}{\underset{T\to +\infty}{\longrightarrow}}  E\left[ X(t)\right]  
+\]</div>
+<p>c’est-à-dire si la moyenne temporelle <span class="math notranslate nohighlight">\(Y_T\)</span> converge vers la moyenne statistique <span class="math notranslate nohighlight">\(E\left[ X(t)\right]\)</span> (qui est indépendante de <span class="math notranslate nohighlight">\(t\)</span> pour un signal stationnaire et sera notée <span class="math notranslate nohighlight">\(m\)</span>). On notera que la limite dans l’équation précédente est calculée au sens de la convergence en moyenne quadratique, c’est-à-dire</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{T} \overset{\textrm{mq}}{\underset{T\to +\infty}{\longrightarrow}}  E\left[ X(t)\right]  =m \Leftrightarrow \lim\limits_{T \to \infty} E\left[ (Y_T-m)^2\right] =0.
+\]</div>
+<p>On remarquera que si <span class="math notranslate nohighlight">\(X(t)\)</span> est un signal ergodique au premier ordre, alors</p>
+<div class="math notranslate nohighlight">
+\[
+E\left[ X(t)\right]  = \lim\limits_{T \to \infty} Y_T
+\]</div>
+<p>et comme cette limite (au sens de la convergence en moyenne quadratique) ne dépend pas de <span class="math notranslate nohighlight">\(t\)</span>, le signal <span class="math notranslate nohighlight">\(X(t)\)</span> est nécessairement stationnaire au premier ordre. L’inverse est faux, comme nous le verrons sur certains exemples. La propriété d’ergodicité est donc plus forte que la stationnarité.</p>
+</section>
+<section id="exemples">
+<h2><span class="section-number">5.1.2. </span>Exemples<a class="headerlink" href="#exemples" title="Permalink to this heading">#</a></h2>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 5.1 </span> (Le secteur)</p>
+<section class="example-content" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+X(t)=A\cos \left( 2\pi f_{0}t+\theta \right) 
+\]</div>
+<p>avec A=2202, f0=50Hz et θ uniformément répartie sur ]0,2π[. Nous savons que le signal X(t) est de moyenne nulle E[X(t)]=0 et de fonction d’autocorrélation E[X(t)X(t−τ)=A22cos⁡(2πf0τ). Le signal X(t) est donc ergodique au premier ordre si</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{T}=\frac{1}{T}\int_{0}^{T}X(u)du \overset{\textrm{mq}}{\underset{T\to +\infty}{\longrightarrow}} 0.
+\]</div>
+<p>Mais</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+Y_{T}&amp;= \frac{1}{T}\int_{0}^{T} A \cos \left( 2\pi f_{0}u+\theta \right) du  \
+&amp;=  \left[ \frac{A \sin \left( 2\pi f_{0}u+\theta \right)} {2 \pi f_0} \right]_{u=0}^{u=T} \
+&amp;= \frac{A \sin \left( 2\pi f_{0}T+\theta \right) -A\sin (\theta)} {2 \pi f_0 T} .\label{YT}
+ \end{split}
+\]</div>
+<p>donc</p>
+<div class="math notranslate nohighlight">
+\[
+\left| Y_{T} \right| \le \frac{A}{\pi f_0 T} 
+\]</div>
+<p>et par suite</p>
+<div class="math notranslate nohighlight">
+\[
+E\left[ (Y_T-m)^2\right] = E\left[ Y_T^2\right] \le \frac{A^2}{\pi^2 f_0^2 T^2}  \;  {\underset{T\to +\infty}{\longrightarrow}} 0.
+\]</div>
+<p>ce qui prouve que le signal X(t) est <strong>ergodique au premier ordre</strong>.</p>
+</section>
+</div><div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 5.2 </span> (Le carré du secteur)</p>
+<section class="example-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight" id="equation-d593ece4-d299-4a0c-b7b4-4e6362b7bb92">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-d593ece4-d299-4a0c-b7b4-4e6362b7bb92" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+X(t) &amp;=&amp;A \cos ^{2}\left( 2\pi f_{0}t+\theta \right)  \
+&amp;=&amp;A \left[ \frac{1}{2}+\frac{1}{2}\cos \left( 4\pi f_{0}t+2\theta
+\right) \right] 
+\end{eqnarray}\]</div>
+<p>où θ est une variable aléatoire uniformément répartie sur ]0,2π[ et A une variable aléatoire de
+moyenne mA et de variance σA2&gt;0 indépendante de θ. La moyenne de X(t) est alors</p>
+<div class="math notranslate nohighlight">
+\[
+E[X(t)] = m = \frac{m_A}{2}.
+\]</div>
+<p>Par ailleurs</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+Y_{T}&amp;= \frac{A}{2T}\int_{0}^{T} \left[ 1+\cos \left( 4\pi f_{0}u+2\theta
+\right) \right]du   \
+&amp;=  \frac{A}{2} +  \frac{A}{2T}  \left[ \frac{\sin \left( 4\pi f_{0}u+2\theta \right)} {4 \pi f_0 } \right]_{u=0}^{u=T} \
+&amp;= \frac{A}{2} +  \frac{A}{2T}  \left[ \frac{\sin \left( 4\pi f_{0}T+2\theta \right) - \sin \left( 2\theta \right)} {4 \pi f_0} \right]. \label{Y2T}
+ \end{split}
+\]</div>
+<p>donc</p>
+<div class="math notranslate nohighlight">
+\[
+ Y_{T} \overset{\textrm{mq}}{\underset{T\to +\infty}{\longrightarrow}} \frac{A}{2} \neq E[X(t)] = \frac{m_A}{2}.
+\]</div>
+<p>ce qui prouve que le signal X(t) <strong>n’est pas ergodique au premier ordre</strong>.</p>
+</section>
+</div><div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 5.3 </span> (Autres exemples)</p>
+<section class="example-content" id="proof-content">
+<ul class="simple">
+<li><p><em><strong>Amplitude aléatoire</strong></em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+X(t)=V 
+\]</div>
+<p>avec V variable aléatoire uniforme sur ]0,V0[ (avec par exemple V0=10 volts).</p>
+<ul class="simple">
+<li><p><em><strong>Modulation du secteur</strong></em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+Z(t)=X(t) \exp \left( -j2 \pi f_0 t \right)
+\]</div>
+<p>avec X(t)=Acos⁡(2πf0t+θ) le secteur défini ci-dessus.</p>
+</section>
+</div></section>
+<section id="theoreme">
+<h2><span class="section-number">5.1.3. </span>Théorème<a class="headerlink" href="#theoreme" title="Permalink to this heading">#</a></h2>
+<div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span class="caption-number">Theorem 5.1 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Pour un processus aléatoire stationnaire au sens large X(t) de moyenne E[X(t)]=m, de fonction d’autocorrélation</p>
+<div class="math notranslate nohighlight">
+\[
+R_X\left( \tau \right) =E\left[ X(t)X^{\ast }\left( t-\tau \right) \right]
+\]</div>
+<p>et de densité spectrale de puissance</p>
+<div class="math notranslate nohighlight">
+\[s_X(f)=TF\left[ R_{X}\left( \tau
+\right) \right],\]</div>
+<p>on a</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{T}=\frac{1}{T}\int_{0}^{T}X(u)du \overset{\textrm{mq}}{\underset{T\to +\infty}{\longrightarrow}}  m  \Leftrightarrow \Delta S_X\left( 0\right) =\left|
+m\right| ^{2}
+\]</div>
+<p>avec ΔSX(0)=SX(0+)−SX(0−) et sX(f)=dSX(f)df.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Comme</p>
+<div class="math notranslate nohighlight">
+\[
+E\left[ \left| Y_{T}-m\right| ^{2}\right] =E\left[ Y_{T}Y_{T}^{\ast }\right]
+-\left| m\right| ^{2} 
+\]</div>
+<p>il suffit de montrer que</p>
+<div class="math notranslate nohighlight">
+\[
+E\left[ Y_{T}Y_{T}^{\ast }\right] =\Delta S_X\left( 0\right).
+\]</div>
+<p>Par utilisation de l’isométrie fondamentale X(t)↔ej2πft, on a</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+E\left[ Y_{T}Y_{T}^{\ast }\right]  &amp;=\int_{\Bbb{R}}\left| \frac{e^{j2\pi
+ft}-1}{j2\pi fT}\right| ^{2}s_X(f)df \
+&amp;=\int_{-\infty }^{-\frac{1}{\sqrt{T}}}+\int_{-\frac{1}{\sqrt{T}}}^{\frac{1}{\sqrt{T}}}+\int_{\frac{1}{\sqrt{T}}}^{+\infty }\left| \frac{e^{j2\pi fT}-1}{j2\pi fT}\right| ^{2}s_X(f)df \
+&amp;=I_{1}+I_{2}+I_{3}
+\end{split}
+\]</div>
+<p>On exprime alors les trois intégrales comme suit</p>
+<ul class="simple">
+<li><p><strong>Intégrale I3</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+I_{3} &amp;=\int_{\frac{1}{\sqrt{T}}}^{+\infty }\left| \frac{e^{j2\pi fT}-1}{j2\pi fT}\right| ^{2}s_X(f)df \
+&amp;\leq \int_{\frac{1}{\sqrt{T}}}^{+\infty }\frac{4}{4\pi ^{2}f^{2}T^{2}} s_X(f)df \
+&amp;\leq \frac{1}{\pi ^{2}T}\int_{\frac{1}{\sqrt{T}}}^{+\infty }s_X(f)df \
+&amp;\leq \frac{R_X\left( 0\right) }{\pi ^{2}T} \overset{}{\underset{T\to +\infty}{\longrightarrow}} 0
+\end{split}
+\]</div>
+<p>où RX(τ) est la fonction d’autocorrélation du signal X(t).</p>
+<ul class="simple">
+<li><p><strong>Intégrale I1</strong></p></li>
+</ul>
+<p>Résultat similaire après changement de variables u=−f.</p>
+<ul class="simple">
+<li><p><strong>Intégrale I2</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+I_{2}=\int_{-\frac{1}{\sqrt{T}}}^{\frac{1}{\sqrt{T}}}\left| \frac{e^{j2\pi
+fT}-1}{j2\pi fT}\right| ^{2}dS_X(f) 
+\]</div>
+<p>On pose</p>
+<div class="math notranslate nohighlight">
+\[
+\widetilde{S}_X\left( f\right) =\left\{ 
+\begin{array}{c}
+S_X(f)\qquad f&lt;0 \ 
+S_X\left( f\right) -\Delta S_X\left( 0\right) \qquad f\geq 0
+\end{array}
+\right. 
+\]</div>
+<p>Par construction, en notant U(f) l’échelon de Heaviside, la fonction <span class="math notranslate nohighlight">\(\widetilde{S}_X\left( f\right) =S_X\left( f\right) -\Delta
+S_X\left( 0\right) U(f)estcontinueenf=0\)</span>. Alors :</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+I_{2} &amp;= \int_{-\frac{1}{\sqrt{T}}}^{\frac{1}{\sqrt{T}}}\left| \frac{e^{j2\pi fT}-1}{j2\pi fT}\right| ^{2}dS_X(f) \
+&amp;=\Delta S_X\left( 0\right) +\int_{-\frac{1}{\sqrt{T}}}^{\frac{1}{\sqrt{T}}}\left| \frac{e^{j2\pi fT}-1}{j2\pi fT}\right|^{2}d\widetilde{S}_X(f)
+\end{split}
+\]</div>
+<p>Puisque pour x&gt;0, on a</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{array}{c}
+\left| \int_{0}^{x}e^{iu}du\right| &amp;\leq &amp;\int_{0}^{x}\left| e^{iu}\right|
+du=x \
+\left| e^{ix}-1\right| &amp;\leq &amp;x,
+\end{array}
+\]</div>
+<p>on en déduit</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+I_{2}-\Delta S_X\left( 0\right) &amp;=\int_{-\frac{1}{\sqrt{T}}}^{\frac{1}{\sqrt{T
+}}}\left| \frac{e^{j2\pi fT}-1}{j2\pi fT}\right| ^{2}d\widetilde{S}_X(f) \
+&amp;\leq \int_{-\frac{1}{\sqrt{T}}}^{\frac{1}{\sqrt{T}}}d\widetilde{S}_X(f)=
+\widetilde{S}_X\left(\tfrac{1}{\sqrt{T}}\right)-\widetilde{S}_X\left(-\tfrac{1}{\sqrt{T}}\right)
+\end{split}
+\]</div>
+<p>Par continuité de S~X(f) et par passage à la limite T⟶+∞,  on en déduit</p>
+<div class="math notranslate nohighlight">
+\[
+I_{2}=  \Delta S_X\left( 0\right).
+\]</div>
+</div>
+<div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span class="caption-number">Example 5.4 </span> (Le secteur)</p>
+<section class="example-content" id="proof-content">
+<p>Puisque E[X(t)]=0, il suffit de vérifier que ΔSX(0)=0, ce qui est immédiat. En effet, puisque E[X(t)X(t−τ)=A22cos⁡(2πf0τ), la densité spectrale de puissance de X(t) est</p>
+<div class="math notranslate nohighlight">
+\[
+s_X(f)=\frac{A^2}{4}  \left[ \delta(f-  f_{0}) + \delta(f+  f_{0})  \right]
+\]</div>
+<p>et son intégrale s’écrit</p>
+<div class="math notranslate nohighlight">
+\[
+S_X(f)=\frac{A^2}{4}  \left[ U(f-  f_{0}) + U(f+  f_{0})  \right],
+\]</div>
+<p>d’où</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta S_X\left( 0\right) =0.
+\]</div>
+<p><strong>Ceci confirme que le secteur est un signal ergodique au premier ordre</strong>.</p>
+</section>
+</div><div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 5.5 </span> (Le carré du secteur)</p>
+<section class="example-content" id="proof-content">
+<p>La fonction d’autocorrélation du carré du secteur est</p>
+<div class="math notranslate nohighlight">
+\[
+E[X(t)X(t-\tau)] = \frac{E[A^2]}{4} E \left \{ [1+\cos(4 \pi f_0 t +2 \theta)] [1+\cos(4 \pi f_0 t-4 \pi f_0 \tau +2 \theta)] ]\right \}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+E[X(t)X(t-\tau)] &amp; = \frac{E[A^2]}{4} E \left \{ [1+\cos(4 \pi f_0 t +2 \theta)] [1+\cos(4 \pi f_0 t-4 \pi f_0 \tau +2 \theta)] ]\right \} \
+&amp;=  \frac{E[A^2]}{4} +  \frac{E[A^2]}{8} \cos(4 \pi f_0 \tau),   
+\end{split}
+\]</div>
+<p>d’où la densité spectrale de puissance</p>
+<div class="math notranslate nohighlight">
+\[
+s_X(f) = \frac{E[A^2]}{4}\delta(f) + \frac{E[A^2]}{16} \delta(f-2f_0)
++  \frac{E[A^2]}{16} \delta(f+2f_0)
+\]</div>
+<p>et son intégrale</p>
+<div class="math notranslate nohighlight">
+\[
+S_X(f) = \frac{E[A^2]}{4} U(f) + \frac{E[A^2]}{16} U(f-2f_0)
++  \frac{E[A^2]}{16} U(f+2f_0).
+\]</div>
+<p>On en déduit</p>
+<div class="math notranslate nohighlight">
+\[
+ \Delta S_X\left( 0\right)-m^2 =  \frac{E[A^2]}{4} -\frac{m_A^2}{4}=\frac{\sigma_A^2}{4}
+\]</div>
+<p>qui est différent de 0 lorsque A est une variable aléatoire (non constante). <strong>Ceci confirme que le carré du secteur est un signal non ergodique.</strong></p>
+</section>
+</div></section>
+<section id="resultats-interessants">
+<h2><span class="section-number">5.1.4. </span>Résultats intéressants<a class="headerlink" href="#resultats-interessants" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Un signal aléatoire <span class="math notranslate nohighlight">\(x(t)\)</span> est ergodique au premier ordre si et seulement si</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{T} \int_0^T c_X(\tau) d \tau  \overset{}{\underset{T\to +\infty}{\longrightarrow}}  0
+\]</div>
+<p>où <span class="math notranslate nohighlight">\(c_X(\tau) = E[X(t)X^{*}(t-\tau)] - \left| m\right| ^{2}\)</span> est <em><strong>l’autocovariance</strong></em> de <span class="math notranslate nohighlight">\(X(t)\)</span>.</p>
+<ul class="simple">
+<li><p><em><strong>Condition suffisante d’ergodicité au premier ordre :</strong></em></p></li>
+</ul>
+<p>si <span class="math notranslate nohighlight">\(c_X(\tau)  \overset{}{\underset{\tau \to +\infty}{\longrightarrow}}  0\)</span>, alors <span class="math notranslate nohighlight">\(x(t)\)</span> est ergodique au premier ordre.</p>
+<p>Les preuves de ces résultats sont disponibles dans le livre de Papoulis  <span id="id1">[<a class="reference internal" href="biblio.html#id5" title="A. Papoulis and S. U. Pillai. Probability, Random Variables and Stochastic Processes. McGraw-Hill, Boston, USA, 4th edition, 2002.">Papoulis and Pillai, 2002</a>]</span> (voir  Eq. (12.7) p. 526 et Eq. (12.10) p. 527).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch5intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span><i class="fas fa-book fa-fw"></i> Pour aller plus loin</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch5sec2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Filtrage adapté</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalites">5.1.1. Généralités</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemples">5.1.2. Exemples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoreme">5.1.3. Théorème</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultats-interessants">5.1.4. Résultats intéressants</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By J-Y. Tourneret et C. Poulliat
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://ch-poulliat.github.io/Cours-TS-SN1A-N7/intro.html"> Traitement du Signal</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
