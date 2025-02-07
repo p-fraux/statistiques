@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.2. Erreurs et courbe ROC &#8212; Initiation aux statistiques - Notions et analyse statistique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/js/all.min.js?v=ec35c6c9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch3sec2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.3. Test paramétrique simple" href="ch3sec3.html" />
+    <link rel="prev" title="3.1. Hypothèses statistique et tests" href="ch3sec1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+    <img src="_static/N7solo.png" class="logo__image only-dark pst-js-only" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Statistiques
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Premières statistiques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Motivations : Pour quoi faire des statistiques ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Les expériences statistiques et les statistiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec3.html">1.3. Moyenne, variance et fonction de répartition empirique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Lois Usuelles et leurs tabulations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Estimateur : exemple de l’Estimateur de Maximum de Vraisemblance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Estimateur et premiers critères</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec2.html">2.2. Efficacité d’un estimateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Estimateur de Maximum de Vraisemblance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Amélioration théorique d’estimateurs (HP)</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Tests</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Hypothèses statistique et tests</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.2. Erreurs et courbe ROC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Test paramétrique simple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec4.html">3.4. Test paramétrique composite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec5.html">3.5. Tests de proportion</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Les modèles gaussiens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Rappels sur la loi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Théorème de Cochran (HP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec3.html">4.3. Test d’égalité de variance et de moyenne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec4.html">4.4. Estimation par régression linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec5.html">4.5. Test d’hypothèse linéaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Deux classes de tests non paramétrique</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec1.html">5.1. Statistique de test du <span class="math notranslate nohighlight">\(\chi^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec3.html">5.3. Tester la loi d’observations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6intro.html">6. <i class="fas fa-book fa-fw"></i>  A propos de la parcimonie</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch7intro.html">7. <i class="fas fa-book fa-fw"></i>  Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec1.html">7.1. Inverse généralisé de fonction de répartition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec2.html">7.2. Inégalités probabilistes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec3.html">7.3. Compléments d’algèbre linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec4.html">7.4. Convergence supplémentaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">8. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html/issues/new?title=Issue%20on%20page%20%2Fch3sec2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch3sec2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Erreurs et courbe ROC</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erreurs-et-incertitude">3.2.1. Erreurs et incertitude</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#courbe-roc-et-evaluation-auc-de-tests">3.2.2. Courbe ROC et évaluation AUC de tests</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="erreurs-et-courbe-roc">
+<h1><span class="section-number">3.2. </span>Erreurs et courbe ROC<a class="headerlink" href="#erreurs-et-courbe-roc" title="Link to this heading">#</a></h1>
+<section id="erreurs-et-incertitude">
+<h2><span class="section-number">3.2.1. </span>Erreurs et incertitude<a class="headerlink" href="#erreurs-et-incertitude" title="Link to this heading">#</a></h2>
+<p>Dans un monde réel, à information partielle, il est illusoire d’espérer obtenir la “bonne” réponse à chaque fois. Ceci est en particulier vrai pour les tests. L’avantage des tests est qu’ils peuvent être conçus pour connaitre la probabilité d’erreur, suivant la réalité.</p>
+<div class="proof definition dropdown admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 3.4 </span> (Espèce d’erreur)</p>
+<section class="definition-content" id="proof-content">
+<p>L’<em>erreur de première espèce</em> consiste à rejeter <span class="math notranslate nohighlight">\(H_0\)</span> à tort lorsque les données sont des tirages d’une loi qui vérifie l’hypothèse nulle.</p>
+<p>Pour <span class="math notranslate nohighlight">\(\mathbb{P}\)</span> vérifiant <span class="math notranslate nohighlight">\(H_0\)</span>, on appelle <em>risque de première espèce</em> (sous-entendu vis-à-vis de <span class="math notranslate nohighlight">\(\mathbb{P}\)</span>) la probabilité sous cette loi de rejeter <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ \phantom{a}\]</div>
+<p>L’<em>erreur de seconde espèce</em> consiste à ne pas rejeter <span class="math notranslate nohighlight">\(H_0\)</span> lorsque les données sont des tirages d’une loi qui vérifie l’hypothèse alternative.</p>
+<p>Pour <span class="math notranslate nohighlight">\(\mathbb{P}\)</span> vérifiant <span class="math notranslate nohighlight">\(H_1\)</span>, on appelle <em>risque de seconde espèce</em> (sous-entendu vis-à-vis de <span class="math notranslate nohighlight">\(\mathbb{P}\)</span>) la probabilité sous cette loi de ne pas rejeter <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ \phantom{a}\]</div>
+<p>De manière plus générale, on appelle <em>puissance</em> du test pour la loi <span class="math notranslate nohighlight">\(\mathbb{P}\)</span> (vérifiant <span class="math notranslate nohighlight">\(H_0\)</span> ou <span class="math notranslate nohighlight">\(H_1\)</span>) la probabilité sous ce test de rejeter <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+<p>On appelle <em>niveau</em> du test le suppremum du risque de première espèce sur toutes les lois vérifiant <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+</section>
+</div><p><em>En traitement du signal, un deuxième nom du risque de première espèce est la probabilité de fausse alarme.</em></p>
+<p>Si l’on fait un tableau pour résumer, on trouve :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{|c|c c c|}
+ \hline
+ &amp;
+ \text{Etat réel}  &amp;&amp;
+ ( \text{vraie probabilité})\\
+&amp;
+ \text{La loi vérifie } H_0  &amp;| &amp; \text{La loi vérifie }H_1 \\
+\hline
+ \text{Test ne rejette pas }H_0 &amp; 1-{\color{red} \alpha} &amp;|&amp; {\color{blue}\beta}  \\
+\hline
+\text{Test rejette }H_0 &amp; {\color{red} \alpha} &amp;|&amp;  1-{\color{blue}\beta}     \\
+\hline
+\end{array}
+\end{split}\]</div>
+<p>avec <span class="math notranslate nohighlight">\(\alpha\)</span> le risque de première espèce, <span class="math notranslate nohighlight">\(\beta\)</span>  le risque de seconde espèce et  <span class="math notranslate nohighlight">\(1-\beta\)</span>  la puissance du test.</p>
+<div class="proof remark dropdown admonition" id="remark-1">
+<p class="admonition-title"><span class="caption-number">Remark 3.1 </span></p>
+<section class="remark-content" id="proof-content">
+<p>Être dans la zone d’acceptation ne signifie pas que <span class="math notranslate nohighlight">\(H_0\)</span> est vraie, mais seulement que les observations dont on dispose ne sont pas incompatibles avec cette hypothèse et que l’on n’a pas de raisons suffisantes de lui préférer <span class="math notranslate nohighlight">\(H_1\)</span> au vu des résultats expérimentaux. C’est pour cela que nous préférons l’appellation <em>ne pas pouvoir rejeter <span class="math notranslate nohighlight">\(H_0\)</span></em> à <em>accepter <span class="math notranslate nohighlight">\(H_0\)</span></em>.</p>
+</section>
+</div><div class="dropdown admonition">
+<p class="admonition-title">Principe d’incertitude</p>
+<p>Il n’est en général pas possible de minimiser à la fois le niveau de test et le risque de seconde espèce.</p>
+<p>En effet, une telle optimisation n’est possible que s’il est possible de faire un test qui ne se trompe jamais, et donc que si aucune des lois vérifiant <span class="math notranslate nohighlight">\(H_0\)</span> prend avec probabilité positive des valeurs qu’une des lois vérifiant <span class="math notranslate nohighlight">\(H_1\)</span> peut prendre avec probabilité positive (c’est-à-dire si les lois ont des supports disjoints).</p>
+<p>Pour se forger une intuition du phénomène, considérons le problème suivant. Nous voulons tester un échantillon suivant une loi supposée normale d’écart-type connu pour donner sa valeur entre deux hypothèses. Nous choisissons alors une statistique de test et une région de rejet, disons <span class="math notranslate nohighlight">\(\overline{x}\)</span> et une zone de la forme <span class="math notranslate nohighlight">\(\overline{x}&gt;\mu_a\)</span>. Utilisons alors le graphique suivant :</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="_images/test_normal.png"><img alt="_images/test_normal.png" src="_images/test_normal.png" style="height: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Illustrations des diverses zones dans un test sur des moyennes de loi normales</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Sous <span class="math notranslate nohighlight">\(H_0\)</span>, la probabilité de dépasser <span class="math notranslate nohighlight">\(\mu_a\)</span>, et donc de se tromper sur la réalité avec une erreur de première espèce, est égale à l’aire en rouge. De même, l’aire en bleue est égale au risque de seconde espèce.</p>
+</div>
+</section>
+<section id="courbe-roc-et-evaluation-auc-de-tests">
+<h2><span class="section-number">3.2.2. </span>Courbe ROC et évaluation AUC de tests<a class="headerlink" href="#courbe-roc-et-evaluation-auc-de-tests" title="Link to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 3.5 </span> (Courbe ROC)</p>
+<section class="definition-content" id="proof-content">
+<p>On appelle courbe ROC d’un test (donné par une statistique et un ensemble de région de rejet des divers niveaux <span class="math notranslate nohighlight">\(\{I_\alpha\}\)</span>) la courbe représentative de la puissance du test en fonction du niveau du test.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Origine historique</p>
+<p>Connaitre la puissance d’un test en fonctions de la précision demandé est un élément central. C’est pour cette raison que les ingénieurs électriques et radar, en charge de la détection en terrain hostile, ont développé un outil graphique pour le décrire : la courbe ROC (Receiver Operating Characteristic). Cet outil a depuis trouvé des applications en médecine, en radiologie, en prévision de catastrophes naturelles et en météorologie.</p>
+</div>
+</section>
+</div><div class="docutils">
+<div class="proof property dropdown admonition" id="property-3">
+<p class="admonition-title"><span class="caption-number">Property 3.1 </span> (Comparaison de courbe ROC)</p>
+<section class="property-content" id="proof-content">
+<p>Si un premier test à une courbe ROC en dessous d’un autre, alors pour tout niveau <span class="math notranslate nohighlight">\(\alpha\)</span>, le deuxième test est plus puissant.</p>
+<p>Si la courbe ROC d’un test est sous la bissectrice  <span class="math notranslate nohighlight">\(y=x\)</span>, alors passer au complémentaire des zones de rejet permet d’obtenir un test plus puissant.</p>
+<p>Un test dont la courbe ROC est la bissectrice est aussi efficace qu’un test ignorant les données et tirant un résultat au hasard.</p>
+<div class="proof admonition" id="proof">
+<p>Proof. Le premier point est immédiat avec la définition de la courbe.</p>
+<p><span class="math notranslate nohighlight">\(\phantom{a}\)</span></p>
+<p>Pour le deuxième point, notons <span class="math notranslate nohighlight">\(I_\alpha\)</span> la zone de rejet de niveau <span class="math notranslate nohighlight">\(\alpha\)</span> et <span class="math notranslate nohighlight">\(\pi_1(\alpha)\)</span> la puissance du test.</p>
+<p>Alors en notant <span class="math notranslate nohighlight">\(\pi_2\)</span> la puissance du test obtenu en passant au complémentaire, l’on trouve :</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{P}(X\notin I_\alpha | H_1)=1-\alpha \]</div>
+<p>donc</p>
+<div class="math notranslate nohighlight">
+\[\pi_2(1-\alpha) = \mathbb{P}(X\notin I_\alpha | H_1)=1-\pi_1(\alpha).\]</div>
+<p>Nous pouvons réécrire cela comme <span class="math notranslate nohighlight">\(\pi_2(\alpha) =1-\pi_1(1-\alpha)\)</span>, ou encore que la nouvelle courbe ROC est toujours au dessus de la bissectrice (car il s’agit de la symétrique de l’ancienne autour du 0.5,0.5), donc plus puissante.</p>
+<p><span class="math notranslate nohighlight">\(\phantom{a}\)</span></p>
+<p>Enfin, pour un niveau <span class="math notranslate nohighlight">\(\alpha\)</span> donné, un test suivant une Bernoulli (indépendante des données) de paramètre <span class="math notranslate nohighlight">\(\alpha\)</span> est bien de niveau <span class="math notranslate nohighlight">\(\alpha\)</span> et de puissance <span class="math notranslate nohighlight">\(\alpha\)</span>. Sur la bissectrice, l’on n’est pas mieux que le hasard.</p>
+</div>
+</section>
+</div></div>
+<div class="docutils">
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 3.6 </span> (AUC)</p>
+<section class="definition-content" id="proof-content">
+<p>On appelle aire sous la courbe (sous-entendu d’un test), ou AUC, l’aire sous la courbe ROC.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Intérêt et justification</p>
+<p>Ce nombre permet de resumer la courbe ROC, et donc la qualité d’un test.</p>
+<p>Un test qui se trompe toujours sous l’alternative a une AUC de 0, s’il n’est pas meilleur que le hasard, il aura une AUC de 0.5 et s’il ne se trompe jamais sous l’alternative son AUC vaudra 1.</p>
+</div>
+</section>
+</div></div>
+<div class="docutils">
+<div class="proof example dropdown admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 3.5 </span> (Un cas d’utilisation en médecine)</p>
+<section class="example-content" id="proof-content">
+<p>Nous allons nous interesser au papier de médecine de 2001 intitulé <em>Head-to-head comparison of N-terminal pro-brain natriuretic
+peptide, brain natriuretic peptide and N-terminal pro-atrial
+natriuretic peptide in diagnosing left ventricular dysfunction</em>,  écrit par <strong>Angelika Hammerer-Lercher, Elke Neubauer, Silvana Muller, Otmar Pachinger, Bernd Puschendorf, Johannes Mair</strong>.</p>
+<p>Les auteurs cherchent alors à comparer trois test de détection d’une anomalie médicale. Après les mesures, ils les regroupent dans le graphique suivant :</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="_images/ROC-medecine.png"><img alt="_images/ROC-medecine.png" src="_images/ROC-medecine.png" style="height: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Courbe ROC comparant trois tests pour la détection de l’anomalie LVEF.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>On reconnait trois courbe ROC avec en abscisse la <em>specificity</em> (ou erreur de première espèce) et en ordonné la <em>sensitivity</em> (ou puissance) du test.</p>
+<p>Dans les résultats du papier de médecine, l’on peut lire :</p>
+<p><em>ROC analysis showed that among the evaluated
+natriuretic peptides, BNP had the best diagnostic
+performance to detect patients with […] LVEF. The area under curve AUC was greater than those of the NT-natriuretic peptides.[…] The current results concur with our previous findings, demonstrating that BNP was a superior marker compared with ANP, NT-ANP, and cGMP
+for the identification of patients with asymptomatic
+LVD.</em></p>
+<p>Les auteurs utilisent ainsi la notion d’aire sous la courbe pour comparer au mieux les trois tests qui les intéressent, et conclure.</p>
+</section>
+</div></div>
+<div class="tip admonition">
+<p class="admonition-title">Méthode de construction empirique de courbe ROC :</p>
+<p>Bien souvent, l’ingénieur est plus intéressé par la construction de telles courbes ROC pour des données réelles. Pour ce faire, il suivra la méthodologie suivante :</p>
+<ul class="simple">
+<li><p>Pour un grand nombre de <span class="math notranslate nohighlight">\(\alpha\)</span> répartit sur <span class="math notranslate nohighlight">\([0,1]\)</span>, déterminer les zones de rejet (par exemple déterminer <span class="math notranslate nohighlight">\(\mu_\alpha\)</span> pour des zones de la forme <span class="math notranslate nohighlight">\(]-\infty,\mu_\alpha]\)</span>). Pour cela, soit nous connaissons les lois sous <span class="math notranslate nohighlight">\(H_0\)</span> et nous faisons un calcul théorique ; soit nous n’avons accès qu’à un grand nombre de tirages suivant des lois de <span class="math notranslate nohighlight">\(H_0\)</span> et utilisons alors les quantiles empiriques.</p></li>
+<li><p>Effectuer un grand nombre de tirages vérifiant <span class="math notranslate nohighlight">\(H_1\)</span> et utiliser les fréquences empiriques pour estimer la puissance du test de niveau <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+<li><p>Tracer alors la fonction en escalier (ou affine par morceau) avec des sauts sur les diverses valeurs de <span class="math notranslate nohighlight">\(\alpha\)</span> évalués.</p></li>
+<li><p>(Pas systématique) Tracer les intervalles de confiance associés à la construction, obtenu pour des très grands ensembles de données par des intervalles de confiance de loi normales.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch3sec1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3.1. </span>Hypothèses statistique et tests</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch3sec3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>Test paramétrique simple</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erreurs-et-incertitude">3.2.1. Erreurs et incertitude</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#courbe-roc-et-evaluation-auc-de-tests">3.2.2. Courbe ROC et évaluation AUC de tests</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By P. Fraux
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://p-fraux.github.io/Cours-Mathematiques/intro.html"> Mathematiques de première année</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

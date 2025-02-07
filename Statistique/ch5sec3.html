@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5.3. Tester la loi d’observations &#8212; Initiation aux statistiques - Notions et analyse statistique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/js/all.min.js?v=ec35c6c9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch5sec3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. A propos de la parcimonie (H.P.)" href="ch6intro.html" />
+    <link rel="prev" title="5.2. Test du \(\chi^2\) : test d’homogénéité et tests d’indépendance" href="ch5sec2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+    <img src="_static/N7solo.png" class="logo__image only-dark pst-js-only" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Statistiques
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Premières statistiques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Motivations : Pour quoi faire des statistiques ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Les expériences statistiques et les statistiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec3.html">1.3. Moyenne, variance et fonction de répartition empirique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Lois Usuelles et leurs tabulations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Estimateur : exemple de l’Estimateur de Maximum de Vraisemblance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Estimateur et premiers critères</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec2.html">2.2. Efficacité d’un estimateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Estimateur de Maximum de Vraisemblance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Amélioration théorique d’estimateurs (HP)</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Hypothèses statistique et tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec2.html">3.2. Erreurs et courbe ROC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Test paramétrique simple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec4.html">3.4. Test paramétrique composite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec5.html">3.5. Tests de proportion</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Les modèles gaussiens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Rappels sur la loi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Théorème de Cochran (HP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec3.html">4.3. Test d’égalité de variance et de moyenne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec4.html">4.4. Estimation par régression linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec5.html">4.5. Test d’hypothèse linéaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Deux classes de tests non paramétrique</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch5sec1.html">5.1. Statistique de test du <span class="math notranslate nohighlight">\(\chi^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.3. Tester la loi d’observations</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6intro.html">6. <i class="fas fa-book fa-fw"></i>  A propos de la parcimonie (H.P.)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch7intro.html">7. <i class="fas fa-book fa-fw"></i>  Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec1.html">7.1. Inverse généralisé de fonction de répartition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec2.html">7.2. Inégalités probabilistes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec3.html">7.3. Compléments d’algèbre linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec4.html">7.4. Convergence supplémentaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">8. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html/issues/new?title=Issue%20on%20page%20%2Fch5sec3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch5sec3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tester la loi d’observations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-adequation-a-une-loi-de-kolmogorov">5.3.1. Test d’adéquation à une loi de Kolmogorov</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-egalite-de-loi-de-kolmogorov-smirnov">5.3.2. Test d’égalité de loi de Kolmogorov-Smirnov</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tester-la-loi-d-observations">
+<h1><span class="section-number">5.3. </span>Tester la loi d’observations<a class="headerlink" href="#tester-la-loi-d-observations" title="Link to this heading">#</a></h1>
+<p><span class="math notranslate nohighlight">\(\newcommand{\R}{\mathbb{R}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\Q}{\mathbb{Q}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\N}{\mathbb{N}}\)</span></p>
+<section id="test-d-adequation-a-une-loi-de-kolmogorov">
+<h2><span class="section-number">5.3.1. </span>Test d’adéquation à une loi de Kolmogorov<a class="headerlink" href="#test-d-adequation-a-une-loi-de-kolmogorov" title="Link to this heading">#</a></h2>
+<p>Pour de petits nombres d’observation et pour des lois <span class="math notranslate nohighlight">\(F_0\)</span> continues, l’on pourra préférer utiliser le test de Kolmogorov, qui utilise toute l’information des observations à l’exception de l’ordre dans lesquelles elles ont été obtenues. Pour cela, ce test utilise la fonction de répartition empirique (voir <a class="reference internal" href="ch1sec3.html#statistiques-usuelles"><span class="std std-ref">Moyenne, variance et fonction de répartition empirique</span></a>).</p>
+<div class="math notranslate nohighlight">
+\[\hat{F_n} : t\mapsto \frac{Card\{k\in [\![1,n]\!], X_k \leq t\}}{n} = \frac{1}{n} \sum_{k=1}^n 1_{]-\infty,t]}(X_k).\]</div>
+<div class="exercise dropdown admonition" id="exer19">
+
+<p class="admonition-title"><span class="caption-number">Exercise 5.1 </span></p>
+<section id="exercise-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)\)</span> une suite de variables aléatoires indépendante et de même loi que la variable <span class="math notranslate nohighlight">\(X\)</span>. L’on note <span class="math notranslate nohighlight">\(F : t\mapsto \mathbb{P}(X\leq t)\)</span> la fonction de répartition de la loi et <span class="math notranslate nohighlight">\(\hat{F_n}\)</span> la fonction de répartition empirique de l’échantillon.</p>
+<p>Montrer que la loi de la variable</p>
+<div class="math notranslate nohighlight">
+\[\sup\limits_{t\in \R}|\hat{F_n}(t)-F(t)|\]</div>
+<p>ne dépend pas de la loi de <span class="math notranslate nohighlight">\(X\)</span> lorsque F est continu.</p>
+<p><em>L’on pourra se servir de l’inverse généralisé de la fonction de répartition</em></p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Nous allons suivre l’indication. Notons <span class="math notranslate nohighlight">\(F^{\leftarrow}\)</span> l’inverse généralisé de la fonction de répartition F.</p>
+<p>Rappelons que <span class="math notranslate nohighlight">\(U\)</span> une variable suivant une loi uniforme sur <span class="math notranslate nohighlight">\([0,1]\)</span>, <span class="math notranslate nohighlight">\( F^{\leftarrow}\circ U\)</span> à la même loi que X (voir <a class="reference internal" href="ch7sec1.html#inverse-generalise"><span class="std std-ref">Inverse généralisé de fonction de répartition</span></a>). Nous pouvons donc, sans perte de généralité sur les lois, supposer qu’il existe <span class="math notranslate nohighlight">\((U_i)\)</span> une suite de variables aléatoires indépendante et suivant une loi uniforme sur <span class="math notranslate nohighlight">\([0,1]\)</span> telle que <span class="math notranslate nohighlight">\(X_k=F^{\leftarrow}\circ U_i\)</span>.</p>
+<p>Or</p>
+<div class="math notranslate nohighlight">
+\[F_n(t)=\frac{Card\{k\in [\![1,n]\!], X_k \leq t\}}{n}\]</div>
+<div class="math notranslate nohighlight">
+\[=\frac{Card\{k\in [\![1,n]\!], U_i \leq F^{\leftarrow}(t)\}}{n}\]</div>
+<p>et</p>
+<div class="math notranslate nohighlight">
+\[ F(t)= \mathbb{P}(X\leq t)= \mathbb{P}(U\leq F^{\leftarrow}(t)).\]</div>
+<p>Ce qui nous donne, en posant <span class="math notranslate nohighlight">\(s=F(t)\)</span>, que</p>
+<div class="math notranslate nohighlight">
+\[\sup\limits_{t\in \R}|\hat{F_n}(t)-F(t)|=\sup\limits_{s\in F(\R)}|\hat{F_{n,U}}(s)-s|= \sup\limits_{s\in ]0,1[}|\hat{F_{n,U}}(s)-s|.\]</div>
+<p>Car si F est continue,
+<span class="math notranslate nohighlight">\(F(\R) = ]0,1[\)</span> et donc la loi de la variable aléatoire
+<span class="math notranslate nohighlight">\(\sup\limits_{t\in \R}|\hat{F_n}(t)-F(t)|\)</span> ne dépend pas de la loi de X (puisqu’elle est égale en loi à une variable aléatoire ne dépendant que de la loi uniforme).</p>
+</div>
+</section>
+</div>
+<p>Au vu de l’exercice, posons la statistique</p>
+<div class="math notranslate nohighlight">
+\[D_n=\sup\limits_{t\in \R} |\hat{F_n}(t)-F(t)|\]</div>
+<div class="proof proposition admonition" id="proposition-1">
+<p class="admonition-title"><span class="caption-number">Proposition 5.3 </span></p>
+<section class="proposition-content" id="proof-content">
+<p>La statistique <span class="math notranslate nohighlight">\(D_n\)</span> vérifie que pour tout <span class="math notranslate nohighlight">\(\mu&gt;0\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}(D_n&gt;\mu) \sim 2\sum_{k=0}^\infty (-1)^{k-1} \exp{(-2k^2\mu^2n)}  \]</div>
+<p>Comme la loi de <span class="math notranslate nohighlight">\(D_n\)</span> peut-être tabulé, nous pouvons alors construire un test d’ajustement (l’hypothèse nulle est <span class="math notranslate nohighlight">\(H_0 : F_X=F\)</span>) à partir des quantiles d’ordre <span class="math notranslate nohighlight">\(1-\alpha\)</span> de la distribution de <span class="math notranslate nohighlight">\(D_n\)</span> noté <span class="math notranslate nohighlight">\(s_\alpha(n)\)</span>. On prend comme règle de décision</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+    \text{Si } d_n(x_1,...,x_n) &gt; s_\alpha(n) &amp; \text {On rejette }H_0\\
+    \text{Si } d_n(x_1,...,x_n) \leq s_\alpha(n) &amp; \text {On ne peut pas rejetter }H_0.
+\end{matrix}\right.\end{split}\]</div>
+<div class="proof remark admonition" id="remark-2">
+<p class="admonition-title"><span class="caption-number">Remark 5.6 </span></p>
+<section class="remark-content" id="proof-content">
+<p>Plutôt que de chercher dans les tables, il est possible lors de la recherche de <span class="math notranslate nohighlight">\(s_\alpha(n)\)</span>, quantile d’ordre <span class="math notranslate nohighlight">\(1-\alpha\)</span> de la distribution de <span class="math notranslate nohighlight">\(D_n\)</span>, d’utiliser que pour <span class="math notranslate nohighlight">\(n&gt;80\)</span>, <span class="math notranslate nohighlight">\(s_{0.05}(n)\sim \frac{1.3581}{\sqrt{n}}\)</span> et <span class="math notranslate nohighlight">\(s_{0.01}(n) \sim \frac{1.6276}{\sqrt{n}}\)</span>.</p>
+</section>
+</div></section>
+</div><div class="tip admonition">
+<p class="admonition-title">Méthode pour simplifier le calcul</p>
+<p>Pour calculer la statistique <span class="math notranslate nohighlight">\(d_n\)</span>, il suffit de remarquer que <span class="math notranslate nohighlight">\(F\)</span> est croissant et que <span class="math notranslate nohighlight">\(\hat{F_n}\)</span> ne change qu’en les points <span class="math notranslate nohighlight">\(x_i\)</span>. Ce point va nous permettre de simplifier la recherche du supremum. Notons <span class="math notranslate nohighlight">\((x^*_1,...,x^*_n)\)</span> les observations rangées par ordre croissant (on parle de la statistique de l’ordre), et supposons pour simplifier qu’elles soient toutes distinctes, c’est-à-dire que <span class="math notranslate nohighlight">\(\forall i\in \{1,...,n-1\}, x^*_i&lt;x^*_{i+1}\)</span> (ce qui est presque-sûr puisque X est supposé continu). On a alors la réécriture</p>
+<div class="math notranslate nohighlight">
+\[d_n = \sup\limits_{t\in \R} |\hat{F_n}(t)-F(t)| = \sup_{i\in \{1,...,n\}}\left(\max[|\frac{i-1}{n}-F(x^*_i)|,|\frac{i}{n}-F(x^*_i)| ]\right).\]</div>
+<p>Dit autrement, il suffit de regarder l’écart au niveau des observations, comme illustré dans la figure <span class="xref std std-ref">CalculKolmogorov</span> :</p>
+<a class="reference internal image-reference" href="_images/Kolmogorov.png" id="calculkolmogorov"><img alt="CalculKolmogorov" class="align-center" id="calculkolmogorov" src="_images/Kolmogorov.png" style="width: 600px;" /></a>
+</div>
+<div class="exercise dropdown admonition" id="exer20">
+
+<p class="admonition-title"><span class="caption-number">Exercise 5.2 </span></p>
+<section id="exercise-content">
+<p>Au cours d’une année, les sites de productions d’une entreprise d’électronique de pointe doivent renouveler certains des outils d’usinages nécessaires à la production d’une entreprise. L’hypothèse de modélisation la plus simple est de dire que le nombre d’outils à remplacer dans un site de production suit une loi de Poisson, de paramètre <span class="math notranslate nohighlight">\(\lambda\)</span> inconnu.</p>
+<p>Au cours de l’année passée, l’entreprise a compté le nombre d’outils remplacé dans ses divers sites. Les résultats sont présentés dans le tableau suivant :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+         \text{Nombre d'outils renouvelés} &amp; 0&amp;1&amp;2&amp;3&amp;4&amp;5&amp;6&amp;7&amp;8&amp;9  \\
+         \hline
+         \text{Nombre de sites}  &amp; 1&amp;2&amp;2&amp;3&amp;3&amp;5&amp;5&amp;2&amp;3&amp;2\\
+         \hline
+    \end{array}\end{split}\]</div>
+<p>Nous admettrons que l’estimateur de maximum de vraisemblance pour le paramètre des lois de Poisson est la moyenne empirique.</p>
+<p>L’entreprise souhaite vérifier que les données <span class="math notranslate nohighlight">\((x_i)\)</span> sont bien issues d’un échantillon de loi de Poisson de paramètre inconnus.</p>
+<p>La documentation Matlab de la fonction POISSCDF décrit “<span class="math notranslate nohighlight">\(POISSCDF(X,Lambda)\)</span> compute the Poisson cumulative distribution function with parameter <span class="math notranslate nohighlight">\(Lambda\)</span> at the value <span class="math notranslate nohighlight">\(X\)</span>”. L’ordinateur donne les réponses suivantes :</p>
+<p>poisscdf([0 1 2 3 4 5 6 7 8 9 10 11], 3) = [0.0498, 0.1991, 0.4232, 0.6472, 0.8153, 0.9161, 0.9665, 0.9881,
+0.9962, 0.9989, 0.9997, 0.9999]</p>
+<p>poisscdf([0 1 2 3 4 5 6 7 8 9 10 11], 4)=[0.0183, 0.0916, 0.2381, 0.4335, 0.6288, 0.7851, 0.8893, 0.9489,
+0.9786, 0.9919, 0.9972, 0.9991]</p>
+<p>poisscdf([0 1 2 3 4 5 6 7 8 9 10 11], 5)=[0.0067, 0.0404, 0.1247, 0.265 , 0.4405, 0.616 , 0.7622, 0.8666,
+0.9319, 0.9682, 0.9863, 0.9945]</p>
+<p>poisscdf([0 1 2 3 4 5 6 7 8 9 10 11], 6)=[0.0025, 0.0174, 0.062 , 0.1512, 0.2851, 0.4457, 0.6063, 0.744 ,
+0.8472, 0.9161, 0.9574, 0.9799]</p>
+<p>a) L’entreprise souhaite effectuer un test du <span class="math notranslate nohighlight">\(\chi^2\)</span> avec un risque <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>. Calculez la statistique d’un tel test en répartissant les données dans trois classes judicieusement choisies. Combien de degré de liberté aura-t-on ? En s’aidant de la table <a class="reference internal" href="ch1sec4.html#fig-chi-square-table"><span class="std std-ref">Table des valeurs critiques pour des lois de \chi^2</span></a>, donnez la région d’acceptation. Conclure.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution a)</p>
+<p>On trouve <span class="math notranslate nohighlight">\(\hat{\lambda}\approx 5\)</span>.</p>
+<p>Au vu de la fonction de répartition correspondante, ont choisi les classes :
+<span class="math notranslate nohighlight">\(C_1= \{0,1,2,3\}\)</span>, <span class="math notranslate nohighlight">\(C_1= \{4,5\}\)</span> et <span class="math notranslate nohighlight">\(C_3\)</span> les autres valeurs. En particulier, <span class="math notranslate nohighlight">\(\mathbb{P}(Y\in C_1)= 0.256\)</span>, <span class="math notranslate nohighlight">\(\mathbb{P}(Y\in C_2)= 0.36\)</span> et <span class="math notranslate nohighlight">\(\mathbb{P}(Y\in C_3)= 0.384\)</span>.</p>
+<p>L’on compte 8 valeurs dans <span class="math notranslate nohighlight">\(C_1\)</span>, 8 dans <span class="math notranslate nohighlight">\(C_2\)</span> et 12 dans <span class="math notranslate nohighlight">\(C_3\)</span>. Comme il y a 3 classe et un paramètre estimé, il faut comparer à un test du <span class="math notranslate nohighlight">\(\chi^2\)</span> avec 1 degré de liberté.</p>
+<p>Après calcul, la statistique de test vaut <span class="math notranslate nohighlight">\(\sum_{l=1}^3\frac{(n_i-np_i)^2}{np_i} = 0.67\)</span></p>
+<p>Il faut comparer cela à la valeur critique de 3.841, qui nous donne comme région d’acceptation <span class="math notranslate nohighlight">\([0,3.841]\)</span>.</p>
+<p>Nous ne pouvons donc pas rejeter l’hypothèse que ces données suivent bien une loi de Poisson.</p>
+</div>
+<p>b) Effectuer à présent un test de Kolmogorov. Est-ce que votre conclusion évolue ?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution b)</p>
+<p>Le tableau des fréquences empiriques est :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+         \text{Nombre d'outils renouvelés} &amp; 0&amp;1&amp;2&amp;3&amp;4&amp; 5&amp;6&amp;7&amp;8&amp;9 \\
+         \hline
+         \text{Fréquence cumulée de sites}  &amp; 0.0357&amp; 0.1071&amp; 0.1785 &amp;0.2857 &amp; 0.3928&amp; 0.5714&amp; 0.75 &amp;0.8214&amp;0.9285&amp;1 \\
+         \hline
+             \text{Fréquence cumulée théorique}&amp;0.0067&amp; 0.0404&amp; 0.1247&amp; 0.265&amp; 0.4405&amp;0.616 &amp; 0.7622&amp; 0.8666&amp;0.9319&amp; 0.9682\\
+           \hline
+        \end{array}\end{split}\]</div>
+<p>On trouve donc que</p>
+<div class="math notranslate nohighlight">
+\[\sup|\hat{F_n}(t)-F(t)|=0.047\]</div>
+<p>Il faut comparer cette valeur à 0.26404 (voir table <a class="reference internal" href="ch1sec4.html#fig-quantile-kolmogorov"><span class="std std-ref">Quantile de niveau 1-\alpha des lois de Kolmogorov</span></a>), et donc encore une fois, nous ne pouvons pas rejeter l’hypothèse que ces données suivent bien une loi de Poisson.</p>
+</div>
+</section>
+</div>
+</section>
+<section id="test-d-egalite-de-loi-de-kolmogorov-smirnov">
+<h2><span class="section-number">5.3.2. </span>Test d’égalité de loi de Kolmogorov-Smirnov<a class="headerlink" href="#test-d-egalite-de-loi-de-kolmogorov-smirnov" title="Link to this heading">#</a></h2>
+<p>Supposons que l’on ne connaisse plus la loi de la variable d’intérêt, mais cherchons plutôt à tester l’égalité des lois de deux séries d’observations.</p>
+<p>Considérons deux  échantillons de tailles <span class="math notranslate nohighlight">\(n\)</span> et <span class="math notranslate nohighlight">\(m\)</span>  respectivement :</p>
+<p><span class="math notranslate nohighlight">\((X_1,...,X_n)\)</span> des variables aléatoires indépendantes de loi <span class="math notranslate nohighlight">\(F_1\)</span></p>
+<p><span class="math notranslate nohighlight">\((Y_1,...,Y_n)\)</span> des variables aléatoires indépendantes de loi <span class="math notranslate nohighlight">\(F_2\)</span>.</p>
+<p>Nous cherchons à tester l’hypothèse</p>
+<div class="math notranslate nohighlight">
+\[H_0 : F_1=F_2 \text{ et il s'agit d'une loi continue.}\]</div>
+<p>contre l’alternative générale.</p>
+<p>Soient <span class="math notranslate nohighlight">\(\hat{F_1}\)</span> et <span class="math notranslate nohighlight">\(\hat{F_2}\)</span> les fonctions de répartition empirique des deux échantillons. Inspiré par le test de Kolmogorov, nous posons comme statistique du test :</p>
+<div class="math notranslate nohighlight">
+\[ \Delta := \sup\limits_{t\in\R}|\hat{F_1}(t)-\hat{F_2}(t)|. \]</div>
+<p>Sous <span class="math notranslate nohighlight">\(H_0\)</span>, la variable aléatoire <span class="math notranslate nohighlight">\(\Delta\)</span> suit la loi de Kolmogorov-Smirnov, dont on utilise la table afin de déterminer <span class="math notranslate nohighlight">\(s_\alpha\)</span>, le quantile d’ordre <span class="math notranslate nohighlight">\(1-\alpha\)</span>,  qui vérifie :</p>
+<div class="math notranslate nohighlight">
+\[\alpha= \mathbb{P}(\Delta&gt;s_\alpha | H_0)\]</div>
+<p>On rejette alors <span class="math notranslate nohighlight">\(H_0\)</span> si la valeur observée <span class="math notranslate nohighlight">\(\delta\)</span> de la statistique satisfait <span class="math notranslate nohighlight">\(\delta&gt;s_\alpha\)</span> et on ne rejette pas <span class="math notranslate nohighlight">\(H_0\)</span> lorsque <span class="math notranslate nohighlight">\(\delta\leq s_\alpha\)</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch5sec2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch6intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span><i class="fas fa-book fa-fw"></i>  A propos de la parcimonie (H.P.)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-adequation-a-une-loi-de-kolmogorov">5.3.1. Test d’adéquation à une loi de Kolmogorov</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-egalite-de-loi-de-kolmogorov-smirnov">5.3.2. Test d’égalité de loi de Kolmogorov-Smirnov</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By P. Fraux
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://p-fraux.github.io/Cours-Mathematiques/intro.html"> Mathematiques de première année</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

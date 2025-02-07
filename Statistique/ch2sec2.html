@@ -1,0 +1,775 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.2. Efficacité d’un estimateur &#8212; Initiation aux statistiques - Notions et analyse statistique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/js/all.min.js?v=ec35c6c9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch2sec2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2.3. Estimateur de Maximum de Vraisemblance" href="ch2sec3.html" />
+    <link rel="prev" title="2.1. Estimateur et premiers critères" href="ch2sec1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+    <img src="_static/N7solo.png" class="logo__image only-dark pst-js-only" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Statistiques
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Premières statistiques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Motivations : Pour quoi faire des statistiques ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Les expériences statistiques et les statistiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec3.html">1.3. Moyenne, variance et fonction de répartition empirique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Lois Usuelles et leurs tabulations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Estimateur : exemple de l’Estimateur de Maximum de Vraisemblance</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Estimateur et premiers critères</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Efficacité d’un estimateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Estimateur de Maximum de Vraisemblance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Amélioration théorique d’estimateurs (HP)</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Hypothèses statistique et tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec2.html">3.2. Erreurs et courbe ROC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Test paramétrique simple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec4.html">3.4. Test paramétrique composite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec5.html">3.5. Tests de proportion</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Les modèles gaussiens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Rappels sur la loi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Théorème de Cochran (HP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec3.html">4.3. Test d’égalité de variance et de moyenne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec4.html">4.4. Estimation par régression linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec5.html">4.5. Test d’hypothèse linéaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Deux classes de tests non paramétrique</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec1.html">5.1. Statistique de test du <span class="math notranslate nohighlight">\(\chi^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec3.html">5.3. Tester la loi d’observations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6intro.html">6. <i class="fas fa-book fa-fw"></i>  A propos de la parcimonie (H.P.)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch7intro.html">7. <i class="fas fa-book fa-fw"></i>  Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec1.html">7.1. Inverse généralisé de fonction de répartition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec2.html">7.2. Inégalités probabilistes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec3.html">7.3. Compléments d’algèbre linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec4.html">7.4. Convergence supplémentaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">8. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html/issues/new?title=Issue%20on%20page%20%2Fch2sec2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch2sec2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Efficacité d’un estimateur</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularite-d-une-experience">2.2.1. Régularité d’une expérience</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#borne-de-cramer-rao-et-efficacite-d-un-estimateur">2.2.2. Borne de Cramer-Rao et efficacité d’un estimateur</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="efficacite-d-un-estimateur">
+<h1><span class="section-number">2.2. </span>Efficacité d’un estimateur<a class="headerlink" href="#efficacite-d-un-estimateur" title="Link to this heading">#</a></h1>
+<p><span class="math notranslate nohighlight">\(\newcommand{\R}{\mathbb{R}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\Q}{\mathbb{Q}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\N}{\mathbb{N}}\)</span></p>
+<p>Afin de faciliter nos calculs et obtenir des résultats plus fins, nous allons faire une série d’hypothèses simplificatrice sur la famille des lois. On parle alors d’hypothèse de régularité.</p>
+<section id="regularite-d-une-experience">
+<span id="dominee"></span><h2><span class="section-number">2.2.1. </span>Régularité d’une expérience<a class="headerlink" href="#regularite-d-une-experience" title="Link to this heading">#</a></h2>
+<div class="proof definition dropdown admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 2.6 </span> (Vraisemblance)</p>
+<section class="definition-content" id="proof-content">
+<p>On dit qu’une famille de loi est dominée par une mesure <span class="math notranslate nohighlight">\(\nu\)</span> si toutes les lois sont absolument continues par rapport à cette mesure. En particulier, il existe une fonction <span class="math notranslate nohighlight">\((x,\theta) \mapsto L(x,\theta)\)</span> intégrable en la première variable telle que pour toutes fonctions g mesurable bornée,</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}_\theta(g(X))=\int_R g(x) L(x,\theta) d\nu(x).\]</div>
+<p>On appelle alors le choix d’une telle fonction dans la classe d’équivalence d’égalité presque partout une vraisemblance (<em>Likelihood</em>) des lois.</p>
+<div class="proof remark admonition" id="remark-1">
+<p class="admonition-title"><span class="caption-number">Remark 2.2 </span></p>
+<section class="remark-content" id="proof-content">
+<p>En particulier, la connaissance de la vraisemblance permet de calculer la probabilité sous <span class="math notranslate nohighlight">\(\mathbb{P}_\theta\)</span> de n’importe quel événement en prenant pour g l’indicatrice d’un événement.</p>
+</section>
+</div></section>
+</div><div class="docutils">
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 2.5 </span></p>
+<section class="example-content" id="proof-content">
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(X=(X_1,\cdots,X_n)\)</span> est un vecteur aléatoire discret, alors en prenant la mesure de comptage comme mesure  dominante, on trouve que la vraisemblance L est égale</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[L(k_1,\cdots,k_n, \theta)=\mathbb{P}_\theta(X_1=k_1,\cdots,X_n=k_n)\]</div>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(X=(X_1,\cdots,X_n)\)</span> est un vecteur aléatoire absolument continu, alors en prenant la mesure de Lebesgue comme mesure  dominante, on trouve avec <span class="math notranslate nohighlight">\(f_\theta\)</span> la densitée de probabilité de <span class="math notranslate nohighlight">\(\mathbb{P}_\theta\)</span> que la vraisemblance L est égale</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[L(x_1,\cdots,x_n,\theta)=f_\theta(x_1,\cdots,x_n)\]</div>
+<p>Ainsi, avec <span class="math notranslate nohighlight">\(X_i \sim \mathcal{E}(\lambda_i)\)</span>, la vraisemblance du vecteur <span class="math notranslate nohighlight">\((X_1, ..., X_n)\)</span> est :
+$<span class="math notranslate nohighlight">\( L : (x_1,...,x_n, \lambda_1, ...,\lambda_n) \mapsto \prod_{i=1}^n\lambda_i e^{-\lambda_i x_i}{1}_{\R_+}(x_i)\)</span>$</p>
+</section>
+</div></div>
+<div class="proof remark admonition" id="remark-3">
+<p class="admonition-title"><span class="caption-number">Remark 2.3 </span></p>
+<section class="remark-content" id="proof-content">
+<p>Dans le cas d’une suite de variables indépendante identiquement distribué, on peut choisir comme mesure dominante une mesure produit. Dans ce cas, la vraisemblance d’un vecteur aléatoire s’écrira comme un produit.</p>
+</section>
+</div><div class="proof definition dropdown admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 2.7 </span> (Modèle régulier.)</p>
+<section class="definition-content" id="proof-content">
+<p>Soit une expérience statistique dominée par une mesure <span class="math notranslate nohighlight">\(\mu\)</span>, et <span class="math notranslate nohighlight">\(f(x,\theta)\)</span> une vraisemblance associée.</p>
+<p>On considère la suite de propriétés suivante par rapport à la mesure <span class="math notranslate nohighlight">\(\mu\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[
+    \{x \in \R, L(x,\theta)&gt;0\} \text{ est indépendant de }\theta. \tag{H1}\label{H1}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    \Theta \text{ est un interval ouvert.} \tag{H2}\label{H2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    \partial_\theta L(x,\theta) \text{ et }\partial_\theta^2 L(x,\theta) \text{ existent et sont intégrables par rapport à la loi }\mathbb{P}_\theta. \tag{H3}\label{H3}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    \text{Il est possible de deriver deux fois la vraisemblance sous le signe intégrale - hypothèses de dominations.} \tag{H4}\label{H4}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    \text{La fonction } Sc_\theta(x) \mapsto \partial_\theta \ln L(x,\theta) \text{ (pour score) est de carré intégrable.} \tag{H5}\label{H5}
+\]</div>
+<p>Lorsque les cinq propriétés <em>H1-5</em> sont vérifiées, on dit que le modèle est régulier.</p>
+<div class="proof remark admonition" id="remark-5">
+<p class="admonition-title"><span class="caption-number">Remark 2.4 </span></p>
+<section class="remark-content" id="proof-content">
+<ul class="simple">
+<li><p>La première hypothèse correspond à pouvoir, quitte à modifier le support de la mesure <span class="math notranslate nohighlight">\(\mu\)</span>, mettre la densité sous la forme d’une exponentielle. On retrouve alors parmi les modèles vérifiant cette hypothèse tous les modèles exponentiels (dont on trouvera une introduction dans <span id="id1">[<a class="reference internal" href="biblio.html#id10" title="K. Doksum P. Bickel. Mathematical statistics: Basic ideas and selected topics. Volume. Holden-Day, 1976. ISBN 978-0-8162-0784-8.">P. Bickel, 1976</a>]</span>).</p></li>
+<li><p>La deuxième hypothèse assure un espace de paramètre satisfaisant pour une analyse fonctionnelle.</p></li>
+<li><p>La troisième et quatrième hypothèse permettent de  calculer facilement les variations des quantités d’intérêts statistiques par rapport au paramètre. En particulier, elles simplifieront la recherche d’optimum</p></li>
+<li><p>La dernière hypothèse est là pour permettre l’étude qui va suivre de l’information de Fisher.</p></li>
+</ul>
+</section>
+</div></section>
+</div><div class="docutils">
+<div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Example 2.6 </span></p>
+<section class="example-content" id="proof-content">
+<ul class="simple">
+<li><p>La famille des lois normales avec comme paramètres moyenne et variance.</p></li>
+<li><p>La famille des lois Gamma.</p></li>
+<li><p>La famille des lois de Poissons.</p></li>
+</ul>
+</section>
+</div></div>
+</section>
+<section id="borne-de-cramer-rao-et-efficacite-d-un-estimateur">
+<h2><span class="section-number">2.2.2. </span>Borne de Cramer-Rao et efficacité d’un estimateur<a class="headerlink" href="#borne-de-cramer-rao-et-efficacite-d-un-estimateur" title="Link to this heading">#</a></h2>
+<p>Un des résultats principal des modèles réguliers est une minoration du risque quadratique, minoration qui décrit l’impossibilité d’avoir une statistique parfaite.</p>
+<p>L’idée de cette minoration est de définir une notion de quantité d’information que l’on peut extraire d’une loi.</p>
+<p>Cette quantité d’information sera directement reliée à la variation du score d’une probabilité (qui mesure la variation de la densité au voisinage d’une loi).</p>
+<div class="proof definition dropdown admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 2.8 </span> (Score)</p>
+<section class="definition-content" id="proof-content">
+<p>L’on considère un modèle régulier, et l’on note <span class="math notranslate nohighlight">\((x,\theta) \mapsto L(x,\theta)\)</span> la vraisemblance.</p>
+<p>On note <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> l’ensemble <span class="math notranslate nohighlight">\(\{x\in \R | L(x,\theta)&gt;0\}\)</span> (cet ensemble est bien défini grâce à l’hypothèse \eqref{H1}, et on l’appelle <em>support</em> du modèle).</p>
+<p>On appelle fonction score du modèle l’application :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} Sc : \left\{\begin{matrix}\mathcal{X}\times \Theta &amp;\to&amp; \R\\(x,\theta) &amp;\mapsto &amp;\partial_\theta \ln(f(x,\theta)),\end{matrix}\right.
+\end{split}\]</div>
+<p>qui est bien défini grâce à l’hypothèse \eqref{H3}.</p>
+<div class="proof remark admonition" id="remark-8">
+<p class="admonition-title"><span class="caption-number">Remark 2.5 </span></p>
+<section class="remark-content" id="proof-content">
+<p>La présence du logarithme dans la définition du score permet, dans le cas indépendant, d’écrire la fonction score d’un vecteur comme somme de score de chacune des composantes.</p>
+<p>Dans le cas d’un vecteur, l’on notera de même <span class="math notranslate nohighlight">\(Sc_n(\mathbf{x},\theta) =\partial_\theta \ln(f(\mathbf{x},\theta)) \)</span> la fonction score correspondante.</p>
+<p>Dans le cas particulier de variables indépendantes, on pourra vérifier que si l’on note <span class="math notranslate nohighlight">\(Sc\)</span> le score de la première composante, l’on a que <span class="math notranslate nohighlight">\( Sc_n(\mathbf{x},\theta) = \sum_{i=1}^n Sc(x_i,\theta)\)</span>.</p>
+</section>
+</div></section>
+</div><div class="docutils">
+<div class="proof definition admonition" id="definition-9">
+<p class="admonition-title"><span class="caption-number">Definition 2.9 </span> (Information de Fisher)</p>
+<section class="definition-content" id="proof-content">
+<p>Pour une expérience statistique dans un modèle régulier de vraisemblance <span class="math notranslate nohighlight">\(L(x,\theta)\)</span>, on définit <em>l’information de Fisher</em> de la variable aléatoire réelle X (sous-entendu sous la loi  <span class="math notranslate nohighlight">\(\mathbb{P}_\theta\)</span>) comme la quantité :</p>
+<div class="math notranslate nohighlight">
+\[ 
+\mathcal{I}_X(\theta):= -\mathbb{E}_\theta\left[\frac{\partial^2}{\partial \theta^2} \ln L(X,\theta)\right].
+\]</div>
+<p>De même, on définit <em>l’information de Fisher</em> du vecteur aléatoire réel <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> comme la quantité :</p>
+<div class="math notranslate nohighlight">
+\[ 
+\mathcal{I}_{\mathbf{X}}(\theta):= -\mathbb{E}_\theta\left[\frac{\partial^2}{\partial \theta^2} \ln(f(\mathbf{X},\theta))\right].
+\]</div>
+<p>Dans le cas où les composantes d’un vecteur aléatoire <span class="math notranslate nohighlight">\(\mathbf{X}=(X_i)_{i\in [\![1,n]\!]}\)</span> sont indépendantes dans leur ensemble et de même loi, on aura la relation sur l’information de Fisher :</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{I}_{\mathbf{X}}(\theta) =n \mathcal{I}_{X_1}(\theta) .\]</div>
+<div class="proof property dropdown admonition" id="property-10">
+<p class="admonition-title"><span class="caption-number">Property 2.5 </span> (Réecriture utile)</p>
+<section class="property-content" id="proof-content">
+<p>Pour une expérience statistique avec un modèle régulier,</p>
+<div class="math notranslate nohighlight">
+\[ I_X(\theta) = \mathbb{E}_\theta\left[Sc(x,\theta)^2\right].\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Commençons d’abord par remarque que grâce à \eqref{H4}, l’on a que :</p>
+<div class="math notranslate nohighlight">
+\[\int \frac{\partial^2}{\partial \theta^2}\left(f(x,\theta) \right)d\nu(x) = \frac{\partial^2}{\partial \theta^2}\left( \int f(x,\theta) d\nu(x)\right) = \frac{\partial^2}{\partial \theta^2} 1 =0.\]</div>
+<p>Maintenant, grâce au théorème de transfert pour les mesures à densité, l’on peut calculer :</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{E}_\theta\left[\frac{\partial^2}{\partial \theta^2} \ln(f(X,\theta))\right] = \int \frac{\partial^2}{\partial \theta^2} \ln(f(X,\theta)) \ f(x,\theta ) d\nu(x)\]</div>
+<div class="math notranslate nohighlight">
+\[= \int \frac{\partial}{\partial \theta}\frac{\partial_\theta f}{f}(x,\theta) \ f(x,\theta ) d\nu(x),\]</div>
+<div class="math notranslate nohighlight">
+\[= \int \left(\frac{\partial^2}{\partial \theta^2}f(x,\theta) - \frac{\partial_\theta f \times \partial_\theta f}{f^2}(x,\theta) \ f(x,\theta ) \right)d\nu(x)\]</div>
+<p>Enfin, comme la fonction score est de carré intégrable, on peut utiliser la linéarité de l’intégrale et trouver que</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{E}_\theta\left[\frac{\partial^2}{\partial \theta^2} \ln(f(X,\theta))\right] =  \int \frac{\partial^2}{\partial \theta^2}f(x,\theta)d\nu(x) - \int Sc(x,\theta)^2 \ f(x,\theta ) d\nu(x) = 0- \mathbb{E}_\theta\left[Sc^2\right]\]</div>
+<p>qui est bien le résultat voulu.</p>
+</div>
+</section>
+</div></section>
+</div></div>
+<div class="docutils">
+<div class="proof remark admonition" id="remark-11">
+<p class="admonition-title"><span class="caption-number">Remark 2.6 </span></p>
+<section class="remark-content" id="proof-content">
+<p>L’information de Fisher donne une estimation moyenne de la courbure de la Log-vraisemblance. Si l’information est grande, la Log-vraisemblance varie beaucoup. L’estimation du maximum de vraisemblance (voir <a class="reference internal" href="ch2sec3.html#emv-section"><span class="std std-ref">l’Estimateur de maximum de vraisemblance</span></a>), obtenue en prenant le paramètre pour lequel la chance d’obtenir le résultat tirée est maximale, est meilleur : elle est plus sensible à un petit déplacement de paramètre ; on pourra donc obtenir plus d’information sur le vrai paramètre à partir  de l’échantillon.</p>
+</section>
+</div></div>
+<div class="docutils">
+<div class="proof definition admonition" id="definition-12">
+<p class="admonition-title"><span class="caption-number">Definition 2.10 </span> (Efficacité)</p>
+<section class="definition-content" id="proof-content">
+<p>On dit qu’une statistique <span class="math notranslate nohighlight">\(T_n\)</span> est <em>efficace</em> en <span class="math notranslate nohighlight">\(\theta\)</span> si elle est sans biais et atteint la borne de Cramer-Rao en <span class="math notranslate nohighlight">\(\theta\)</span> (définie ci-dessous)</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}_\theta(T_n)= h(\theta) \qquad \text{ et } \qquad V_\theta(T_n)= \frac{{(h'(\theta)^2}}{I_X(\theta)}\]</div>
+</section>
+</div></div>
+<div class="proof theorem admonition" id="theorem-13">
+<p class="admonition-title"><span class="caption-number">Theorem 2.1 </span> (Borne de Cramer-Rao)</p>
+<section class="theorem-content" id="proof-content">
+<p>On considère un modèle régulier (hypothèse \eqref{H1} à \eqref{H5}).</p>
+<p>Soit <span class="math notranslate nohighlight">\(h\)</span> une fonction dérivable sur <span class="math notranslate nohighlight">\(\Theta\)</span>, et soit une statistique bornée <span class="math notranslate nohighlight">\(T_n\)</span> qui est un estimateur sans biais de <span class="math notranslate nohighlight">\(h(\theta)\)</span>.</p>
+<p>Si <span class="math notranslate nohighlight">\(I_\mathbf{X}(\theta)&gt;0\)</span>, on a la minoration de la variance suivante :</p>
+<div class="math notranslate nohighlight">
+\[V_\theta(T_n) \geq \frac{(h'(\theta))^2}{I_\mathbf{X}(\theta)}.\]</div>
+<p>En particulier, pour un estimateur de <span class="math notranslate nohighlight">\(\theta\)</span> sans biais,</p>
+<div class="math notranslate nohighlight">
+\[V_\theta(T_n) \geq \frac{1}{I_\mathbf{X}(\theta)}.\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. On se donne une statistique <span class="math notranslate nohighlight">\(T_n\)</span> qui est un estimateur borné sans biais de <span class="math notranslate nohighlight">\(h(\theta)\)</span>.</p>
+<p>Alors</p>
+<div class="math notranslate nohighlight">
+\[|h'(\theta)|= \left|\frac{\partial}{\partial \theta} \mathbb{E}_\theta\left[T_n(\mathbf{X})\right]\right|,\]</div>
+<div class="math notranslate nohighlight">
+\[=\left| \frac{\partial}{\partial \theta} \int T_n(\mathbf{x}) f(\mathbf{x},\theta) d\nu(x)\right|,\]</div>
+<p>Et par dérivation sous l’intégrale,</p>
+<div class="math notranslate nohighlight">
+\[|h'(\theta)|=\left| \int T_n(\mathbf{x}) \frac{\partial}{\partial \theta} \left(f(\mathbf{x},\theta)\right) d\nu(x)\right| \]</div>
+<div class="math notranslate nohighlight">
+\[=\left| \int T_n(\mathbf{x}) f(\mathbf{x},\theta) \times  \frac{\partial f(\mathbf{x},\theta)}{f(\mathbf{x},\theta) } d\nu(x)\right|,\]</div>
+<p>Et comme</p>
+<div class="math notranslate nohighlight">
+\[\int\mathbb{E}_\theta(T_n)\partial_\theta f(\mathbf{x},\theta)d\nu(x)=\mathbb{E}_\theta(T_n)\partial_\theta\int f(\mathbf{x},\theta)d\nu(x)=\mathbb{E}_\theta(T_n)\partial_\theta(1)=0,\]</div>
+<p>on a</p>
+<div class="math notranslate nohighlight">
+\[|h'(\theta)|=\left| \int T_n(\mathbf{x})  \times  \frac{\partial f(\mathbf{x},\theta)}{f(\mathbf{x},\theta) } f(\mathbf{x},\theta)d\nu(x)-\int\mathbb{E}_\theta(T_n)\partial_\theta f(\mathbf{x},\theta)d\nu(x)\right|,\]</div>
+<div class="math notranslate nohighlight">
+\[=\left| \int (T_n(\mathbf{x}) -\mathbb{E}_\theta(T_n)) \times  \frac{\partial f(\mathbf{x},\theta)}{f(\mathbf{x},\theta) } f(\mathbf{x},\theta)d\nu(x)\right|,\]</div>
+<div class="math notranslate nohighlight">
+\[=\mathbb{E}_\theta\left[(T_n(\mathbf{X}) -\mathbb{E}_\theta(T_n)) \times  \frac{\partial f(\mathbf{X},\theta)}{f(\mathbf{X},\theta) }\right]\]</div>
+<p>Et donc d’après l’inégalité de Cauchy-Schwarz,</p>
+<div class="math notranslate nohighlight">
+\[|h'(\theta)|\leq \sqrt{\mathbb{E}_\theta\left[(T_n(\mathbf{X})-\mathbb{E}_\theta(T_n))^2\right] }\sqrt{\mathbb{E}_\theta\left[Sc(\mathbf{X}, \theta)^2\right]} \]</div>
+<div class="math notranslate nohighlight">
+\[= \sqrt{V_\theta\left[T_n(\mathbf{X})\right] }\sqrt{I_X(\theta)}.\]</div>
+<p>En prenant alors le carré de cette inégalité, l’on retrouve bien l’inégalité de Cramer-Rao annoncé.</p>
+</div>
+</section>
+</div><div class="docutils">
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch2sec1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.1. </span>Estimateur et premiers critères</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch2sec3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>Estimateur de Maximum de Vraisemblance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularite-d-une-experience">2.2.1. Régularité d’une expérience</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#borne-de-cramer-rao-et-efficacite-d-un-estimateur">2.2.2. Borne de Cramer-Rao et efficacité d’un estimateur</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By P. Fraux
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://p-fraux.github.io/Cours-Mathematiques/intro.html"> Mathematiques de première année</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

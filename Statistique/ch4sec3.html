@@ -1,0 +1,731 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4.3. Test d’égalité de variance et de moyenne &#8212; Initiation aux statistiques - Notions et analyse statistique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/js/all.min.js?v=ec35c6c9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch4sec3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4.4. Estimation par régression linéaire" href="ch4sec4.html" />
+    <link rel="prev" title="4.2. Théorème de Cochran (HP)" href="ch4sec2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+    <img src="_static/N7solo.png" class="logo__image only-dark pst-js-only" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Statistiques
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Premières statistiques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Motivations : Pour quoi faire des statistiques ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Les expériences statistiques et les statistiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec3.html">1.3. Moyenne, variance et fonction de répartition empirique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Lois Usuelles et leurs tabulations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Estimateur : exemple de l’Estimateur de Maximum de Vraisemblance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Estimateur et premiers critères</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec2.html">2.2. Efficacité d’un estimateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Estimateur de Maximum de Vraisemblance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Amélioration théorique d’estimateurs (HP)</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Hypothèses statistique et tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec2.html">3.2. Erreurs et courbe ROC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Test paramétrique simple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec4.html">3.4. Test paramétrique composite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec5.html">3.5. Tests de proportion</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Les modèles gaussiens</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Rappels sur la loi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Théorème de Cochran (HP)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.3. Test d’égalité de variance et de moyenne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec4.html">4.4. Estimation par régression linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec5.html">4.5. Test d’hypothèse linéaire</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Deux classes de tests non paramétrique</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec1.html">5.1. Statistique de test du <span class="math notranslate nohighlight">\(\chi^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec3.html">5.3. Tester la loi d’observations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6intro.html">6. <i class="fas fa-book fa-fw"></i>  A propos de la parcimonie (H.P.)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch7intro.html">7. <i class="fas fa-book fa-fw"></i>  Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec1.html">7.1. Inverse généralisé de fonction de répartition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec2.html">7.2. Inégalités probabilistes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec3.html">7.3. Compléments d’algèbre linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec4.html">7.4. Convergence supplémentaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">8. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html/issues/new?title=Issue%20on%20page%20%2Fch4sec3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch4sec3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Test d’égalité de variance et de moyenne</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-egalite-des-variances">4.3.1. Test d’égalité des variances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-egalite-des-moyennes">4.3.2. Test d’égalité des moyennes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="test-d-egalite-de-variance-et-de-moyenne">
+<h1><span class="section-number">4.3. </span>Test d’égalité de variance et de moyenne<a class="headerlink" href="#test-d-egalite-de-variance-et-de-moyenne" title="Link to this heading">#</a></h1>
+<p><span class="math notranslate nohighlight">\(\newcommand{\R}{\mathbb{R}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\Q}{\mathbb{Q}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\N}{\mathbb{N}}\)</span></p>
+<p>On considère <span class="math notranslate nohighlight">\((X_1,...,X_{n_1})\)</span> un échantillon de taille <span class="math notranslate nohighlight">\(n_1\)</span> d’une loi normale <span class="math notranslate nohighlight">\(\mathcal{N}(m_1,\sigma_1^2)\)</span> et <span class="math notranslate nohighlight">\((Y_1,...,Y_{n_2})\)</span> un échantillon de taille <span class="math notranslate nohighlight">\(n_2\)</span> d’une loi normale <span class="math notranslate nohighlight">\(\mathcal{N}(m_2,\sigma_2^2)\)</span>.
+On suppose de plus que <span class="math notranslate nohighlight">\((X_i, Y_j)\)</span> sont indépendants dans leur ensemble. Les paramètres <span class="math notranslate nohighlight">\(m_1,m_2,σ_1,σ_2\)</span> sont inconnus, mais nous souhaitons tester la “ressemblance” de la loi de X avec celle de Y. Pour cela, nous allons tester l’égalité des paramètres Espérance et Variance.</p>
+<section id="test-d-egalite-des-variances">
+<h2><span class="section-number">4.3.1. </span>Test d’égalité des variances<a class="headerlink" href="#test-d-egalite-des-variances" title="Link to this heading">#</a></h2>
+<p>L’on veut donc tester</p>
+<div class="math notranslate nohighlight">
+\[H_0 : \sigma_1^2=\sigma_2^2 \qquad \text{ contre } \qquad H_1 : \sigma_1^2 \neq \sigma_2^2.\]</div>
+<p>On pose</p>
+<div class="math notranslate nohighlight">
+\[ S_1^2 = \frac{1}{n_1-1} \sum_{i=1}^{n_1} (X_i-\overline{X})^2 \qquad \text{ avec } \overline{X}=\frac{1}{n_1}\sum_{i=1}^{n_1} X_i\]</div>
+<p>et</p>
+<div class="math notranslate nohighlight">
+\[ S_2^2 = \frac{1}{n_2-1} \sum_{j=1}^{n_2} (Y_j-\overline{X})^2 \qquad \text{ avec } \overline{X}=\frac{1}{n_2}\sum_{j=1}^{n_2} Y_j.\]</div>
+<p>Enfin, on définit</p>
+<div class="math notranslate nohighlight">
+\[ Stat=\frac{S_1^2}{S_2^2}.\]</div>
+<div class="proof proposition admonition" id="proposition-0">
+<p class="admonition-title"><span class="caption-number">Proposition 4.3 </span></p>
+<section class="proposition-content" id="proof-content">
+<p>Pour <span class="math notranslate nohighlight">\(k\in \{1,2\}\)</span> on a que</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{\sigma_k} S_k^2 \sim \chi^2_{n_k-1}.\]</div>
+<p>Alors</p>
+<div class="math notranslate nohighlight">
+\[\frac{\sigma_2^2}{\sigma_1^2} Stat\]</div>
+<p>a la même loi que le rapport de deux lois du <span class="math notranslate nohighlight">\(\chi^2\)</span> avec respectivement <span class="math notranslate nohighlight">\(n_1-1\)</span> et <span class="math notranslate nohighlight">\(n_2-1\)</span> degrés de liberté : la loi de Fisher-Snedecor (<a class="reference internal" href="ch1sec4.html#fisher-snedecor"><span class="std std-ref">Loi de Fisher-Snedecor</span></a>) noté <span class="math notranslate nohighlight">\(\mathcal{F}_{n_1-1, n_2-1}\)</span>.</p>
+<p>Sous <span class="math notranslate nohighlight">\(H_0\)</span>, le rapport des variances disparait car égal à 1.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 4.4 </span> (Test d’égalité des variances)</p>
+<section class="definition-content" id="proof-content">
+<p>Notons <span class="math notranslate nohighlight">\(\mathcal{F}_{n,p;\alpha}\)</span> le quantile d’ordre <span class="math notranslate nohighlight">\(\alpha \)</span> de la loi <span class="math notranslate nohighlight">\(\mathcal{F}_{n,p}\)</span>.</p>
+<p>Nous rejetterons <span class="math notranslate nohighlight">\(H_0\)</span> si</p>
+<div class="math notranslate nohighlight">
+\[ Stat &gt; \mathcal{F}_{n_1-1,n_2-1;1-\alpha}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{(ou suivant les connaissances antérieures si} \quad Stat &lt; \mathcal{F}_{n_1-1,n_2-1;\alpha}). \]</div>
+<p>Nous admettrons que ce test est le test le plus puissant parmi tous les tests de niveau <span class="math notranslate nohighlight">\(\alpha\)</span> (<em>test uniformément plus puissant</em> U.P.P. ou U.M.P en anglais).</p>
+</section>
+</div><div class="hint dropdown admonition">
+<p class="admonition-title">Limitations du test</p>
+<p>Une critique principale de ce test est sa sensibilité à la non-normalité des variables <span class="math notranslate nohighlight">\(X,Y\)</span> (l’on dit que le test n’est pas robuste). C’est pour cela que les statisticiens ont développé des alternatives comme le test de Bartlett ou le test de Levene.</p>
+</div>
+</section>
+<section id="test-d-egalite-des-moyennes">
+<h2><span class="section-number">4.3.2. </span>Test d’égalité des moyennes<a class="headerlink" href="#test-d-egalite-des-moyennes" title="Link to this heading">#</a></h2>
+<p>On considère à présent que l’on sait que les variances des deux échantillons sont égales (par exemple en effectuant le test précédent), et l’on veut alors tester lorsque <span class="math notranslate nohighlight">\(\sigma_1^2=\sigma_2^2= \sigma^2\)</span> l’hypothèse</p>
+<div class="math notranslate nohighlight">
+\[H_0 : m_1=m_2 \qquad \text{ contre } \qquad H_1 : m_1\neq m_2.\]</div>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 4.5 </span> (Test d’égalité des moyennes)</p>
+<section class="definition-content" id="proof-content">
+<p>On construit le test d’égalité à l’aide des quantiles de la loi de Student, car</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\overline{X}-\overline{Y}}{\sqrt{\frac{1}{n_1}+\frac{1}{n_2}} \cdot \sqrt{\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}}} =
+\frac{\frac{\overline{X}-\overline{Y}}{ \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}}
+{\sqrt{\frac{Z}{n_1+n_2-2}}} \sim \text{ Student à } (n_1+n_2-1) \text{ d.d.l.}\]</div>
+<p>En effet, d’après le théorème de Cochran ,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\overline{X}-\overline{Y}}{\sigma} \sim \mathcal{N}(m_1-m_2, \frac{1}{n_1}+\frac{1}{n_2})\]</div>
+<div class="math notranslate nohighlight">
+\[Z=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{\sigma^2}  \sim \chi^2_{n_1+n_2-2} \text{ comme somme de deux variables indépendante de loi du }\chi^2,\]</div>
+<p>et comme les moyennes empiriques sont indépendantes des variances empiriques, l’on a la loi de la statistique.</p>
+<p>Si l’on prend la zone de rejet symétrique, ce test est le test le plus puissant parmi tous les tests de niveau <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+</section>
+</div><div class="exercise admonition" id="exer17">
+
+<p class="admonition-title"><span class="caption-number">Exercise 4.3 </span></p>
+<section id="exercise-content">
+<p>On considère un système électronique, alimenté par une source continu de tension x connue. On observe à la sortie une tension Y. Nous supposerons que Y peut s’écrire de la forme</p>
+<div class="math notranslate nohighlight">
+\[ Y=ux+v+ A\]</div>
+<p>Avec <span class="math notranslate nohighlight">\(A \sim \mathcal{N}(0,\sigma^2)\)</span>. On désire estimer les valeurs de <span class="math notranslate nohighlight">\(u\)</span> et <span class="math notranslate nohighlight">\(v\)</span>. Pour cela, on mesure les valeurs <span class="math notranslate nohighlight">\(y_j\)</span> de Y pour diverses valeurs <span class="math notranslate nohighlight">\(x_j\)</span> de X. Ces valeurs sont “entachées” des erreurs <span class="math notranslate nohighlight">\(A_j\)</span>.</p>
+<p>a) On effectue ces mesures à Yaoundé (Cameroun) par <span class="math notranslate nohighlight">\(30°C\)</span>. En supposant que les <span class="math notranslate nohighlight">\(A_j\)</span> soient issus de tirages indépendants, déduire du tableau suivant les estimations <span class="math notranslate nohighlight">\(\hat{U}\)</span> et <span class="math notranslate nohighlight">\(\hat{V}\)</span> de u et v.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             x_j :&amp;5 &amp;7 &amp;9 &amp; 11 &amp;13 &amp;15&amp; 17 &amp;19 &amp; 21  \\
+             \hline 
+             y_j :&amp; 6 &amp;8&amp;9.6&amp;9.1&amp;10&amp;10.4&amp;13.7&amp;14.1&amp;14.6\\
+             \hline
+        \end{array}\end{split}\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution a)</p>
+<p>On sait que les estimateurs pour une variable explicative sont :</p>
+<div class="math notranslate nohighlight">
+\[\hat{u_1}= \frac{Cov(x,y)}{\tilde{S_x}^2} \qquad \hat{v_1} =\overline{y} -\hat{u_1}\overline{x}\]</div>
+<p>Et ici nous trouvons</p>
+<div class="math notranslate nohighlight">
+\[\hat{u_1}= 0.52 \qquad \hat{v_1} =3.87\]</div>
+</div>
+<p>b) On refait à présent ces mesures au Pôle Nord par <span class="math notranslate nohighlight">\(-30°C\)</span>. Avec les mêmes hypothèses, déduire les estimations <span class="math notranslate nohighlight">\(\hat{U}\)</span> et <span class="math notranslate nohighlight">\(\hat{V}\)</span> de u et v. Quel remarque peut-on faire ?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             x_j :&amp;2 &amp;4 &amp;6 &amp; 8 &amp;10 &amp;12&amp; 14 &amp;16   \\
+             \hline 
+             y_j :&amp; 8 &amp;8&amp;10.5&amp;10.1&amp;12.8&amp;12.8&amp;13.1&amp;14.2\\
+             \hline
+        \end{array}\end{split}\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution b)</p>
+<p>On trouve :</p>
+<div class="math notranslate nohighlight">
+\[\hat{u_2}= 0.47 \qquad \hat{v_2} =6.98\]</div>
+<p>si l’estimateur de U reste proche, celui de V change beaucoup. La valeur moyenne semble beaucoup impactée par la température, mais sa réponse au signal l’est peu. Nous allons essayer de le montrer</p>
+</div>
+<p>c)  Donner un estimateur de la variance <span class="math notranslate nohighlight">\(\sigma\)</span> du bruit. Le calculer pour les deux séries de mesure.</p>
+<p><em>On pourra démontrer ou utiliser le fait que pour une estimation <span class="math notranslate nohighlight">\(\hat{Y}\)</span> de Y par la méthode des moindres carrés avec bruit gaussien par J paramètres <span class="math notranslate nohighlight">\(X_i\)</span> sur n mesures, <span class="math notranslate nohighlight">\(Y-\hat{Y}\)</span> suit une loi normale de dimension (n-J-1)</em></p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution c)</p>
+<p>En reprenant les notations de la démonstration de la preuve des moindres carré,
+<span class="math notranslate nohighlight">\(Y-\hat{Y}=(X(X^tX)^{-1}X^t - I_n)A\)</span>.</p>
+<p>Or la matrice <span class="math notranslate nohighlight">\(X(X^tX)^{-1}X^t - I_n\)</span> est la matrice de projection sur l’orthogonal de l’espace des colonnes de X. Donc le théorème de Cochran montre l’indication.</p>
+<p>On peut alors estimer la variance du bruit avec la variance empirique de ce vecteur.</p>
+<p>Pour la première série, on trouve</p>
+<div class="math notranslate nohighlight">
+\[\hat{\sigma_1}^2 := \frac{1}{n-2}\sum_{i=1}^n(y_i-\hat{u_1}x_i-\hat{v_1})^2 =0.69 \]</div>
+<div class="math notranslate nohighlight">
+\[\hat{\sigma_2}^2 =0.539 \]</div>
+</div>
+<p>d) Montrer avec un test adapté que l’on peut supposer que les deux séries ont la même variance du bruit (ce qui revient à tester que les mesures ont la même précision) avec un risque de <span class="math notranslate nohighlight">\(5\%\)</span>. L’on pourra s’aider des tables du chapitre <a class="reference internal" href="ch1sec4.html#lois-usuelles"><span class="std std-ref">Lois Usuelles et leurs tabulations</span></a>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution d)</p>
+<p>On sait déjà (encore avec le théorème de Cochran) que <span class="math notranslate nohighlight">\((n_i-2)\frac{\hat{\sigma^2_i}}{\sigma_i^2}\)</span> suit une loi du <span class="math notranslate nohighlight">\(\chi^2\)</span> à <span class="math notranslate nohighlight">\(n_i-2\)</span> degré de liberté.</p>
+<p>On veut tester <span class="math notranslate nohighlight">\(H_0 : \sigma^2_1=\sigma^2_2 \)</span> contre l’alternative.</p>
+<p>Sous <span class="math notranslate nohighlight">\(H_0\)</span>, on peut donc faire un test d’égalité de variance, puisque alors <span class="math notranslate nohighlight">\(\frac{(n_2-2)\sigma_2^2}{(n_1-2)\sigma_1^2}\)</span> suit une loi de Fisher-Snedecor à  <span class="math notranslate nohighlight">\(n_2-2=6\)</span> et <span class="math notranslate nohighlight">\(n_1-2=7\)</span> degrés de libertés.</p>
+<p>On trouve ici <span class="math notranslate nohighlight">\(\frac{(n_1-2)\sigma_1^2}{(n_2-2)\sigma_2^2}= 1.49\)</span>.</p>
+<p>Avec la table <a class="reference internal" href="ch1sec4.html#fig-quantile-fisher"><span class="std std-ref">Quantile d’ordre 95% d’une loi de Fisher-Snedecor</span></a>, l’on trouve le quantile <span class="math notranslate nohighlight">\(q_{1-\alpha}=3.87\)</span>.</p>
+<p>On ne peut donc pas rejeter l’hypothèse, à un risque de 5% que</p>
+<div class="math notranslate nohighlight">
+\[\sigma^2_1=\sigma^2_2 \]</div>
+</div>
+<p>e)  Étudier avec des tests d’égalité de moyenne si les valeurs de u sont les mêmes pour les deux séries de mesures.</p>
+<p><em>Vous pourrez admettre que <span class="math notranslate nohighlight">\(\hat{U}\sim \mathcal{N}(u,\frac{\sigma^2}{n})\)</span></em></p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution e)</p>
+<p>Nous voulons tester <span class="math notranslate nohighlight">\(H_0 : u_1=u_2\)</span> contre l’alternative.</p>
+<p>Nous savons que <span class="math notranslate nohighlight">\(\hat{u_i}\sim \mathcal{N}(u_i,\frac{\sigma}{n_i})\)</span>.</p>
+<p>En particulier,</p>
+<div class="math notranslate nohighlight">
+\[\hat{u_1}-\hat{u_2} \sim \mathcal{N}(u_1-u_2,\sigma(\frac{1}{n_1}+\frac{1}{n_2}))\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{(n_1-2)\hat{\sigma}_1+ (n_2-2)\hat{\sigma}_2}{\sigma^2} \sim \chi_{n_1+n_2-4}^2\]</div>
+<p>Donc sous <span class="math notranslate nohighlight">\(H_0\)</span>, l’on a que</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\hat{u_1}-\hat{u_2} }{\sigma \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\sim \mathcal{N}(0,1)\]</div>
+<p>Et donc que</p>
+<div class="math notranslate nohighlight">
+\[S=\frac{\hat{u_1}-\hat{u_2} }{\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}\sqrt{\frac{(n_1-2)\hat{\sigma}_1+ (n_2-2)\hat{\sigma}_2}{n_1+n_2-4}}} \sim t_{n_1+n_2-4} \text{ loi de Student à } n_1+n_2-4 \text{ degrés de libertés.}\]</div>
+<p><em>Loi du rapport d’une loi normale par la racine d’une loi d’une variable du <span class="math notranslate nohighlight">\(\chi^2_n\)</span> divisé par son nombre de degrés de liberté</em>.</p>
+<p>Pour l’échantillon, <span class="math notranslate nohighlight">\(S=0.0308\)</span>. le quantile d’ordre 0.975 (car nous cherchons une région de rejet pour un test bilatéral d’une loi symétrique) pour une loi de Student à 13 degrés de liberté est 1,1604.</p>
+<p>Comme <span class="math notranslate nohighlight">\(-1.1604\leq S \leq 1.1604\)</span>, nous ne pouvons pas rejeter <span class="math notranslate nohighlight">\(H_0\)</span> avec un risque de 5%.</p>
+</div>
+<p>f) Étudier avec des tests d’égalité de moyenne si les valeurs de v sont les mêmes pour les deux séries de mesures.</p>
+<p><em>Vous pourrez admettre que <span class="math notranslate nohighlight">\(\hat{V}\sim \mathcal{N}\left(v,\frac{\sigma^2}{n}(1+\frac{\overline{x}_i^2}{S_{x_i}^2})\right)\)</span></em>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution f)</p>
+<p>Comme pour la question précédente, nous voulons tester <span class="math notranslate nohighlight">\(H_0 : v_1=v_2\)</span> contre l’alternative.</p>
+<p>Nous savons que <span class="math notranslate nohighlight">\(\hat{v_i}\sim \mathcal{N}\left(v_i,\frac{\sigma^2}{n_i}(1+\frac{\overline{x}^2}{S_X^2})\right)\)</span>.</p>
+<p>Avec le même raisonnement qu’à la question précédente, l’on trouve que</p>
+<div class="math notranslate nohighlight">
+\[S'=\frac{\hat{v_1}-\hat{v_2} }{\sqrt{\frac{1}{n_1}(1+\frac{\overline{x}_1^2}{S_{X_1}^2})+\frac{1}{n_2}(1+\frac{\overline{x}_2^2}{S_{x_2}^2})}\sqrt{\frac{(n_1-2)\hat{\sigma}_1+ (n_2-2)\hat{\sigma}_2}{n_1+n_2-4}}} \sim t_{n_1+n_2-4}\]</div>
+<p>Pour l’échantillon, <span class="math notranslate nohighlight">\(S'=-3.31\)</span>.</p>
+<p>Comme <span class="math notranslate nohighlight">\(S'\notin [-1.1604 ; 1.1604]\)</span>, nous rejetons <span class="math notranslate nohighlight">\(H_0\)</span> avec un risque de 5%.</p>
+</div>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch4sec2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4.2. </span>Théorème de Cochran (HP)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch4sec4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4.4. </span>Estimation par régression linéaire</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-egalite-des-variances">4.3.1. Test d’égalité des variances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-d-egalite-des-moyennes">4.3.2. Test d’égalité des moyennes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By P. Fraux
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://p-fraux.github.io/Cours-Mathematiques/intro.html"> Mathematiques de première année</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

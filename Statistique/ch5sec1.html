@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5.1. Statistique de test du \(\chi^2\) &#8212; Initiation aux statistiques - Notions et analyse statistique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/js/all.min.js?v=ec35c6c9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch5sec1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.2. Test du \(\chi^2\) : test d’homogénéité et tests d’indépendance" href="ch5sec2.html" />
+    <link rel="prev" title="5. Deux classes de tests non paramétrique" href="ch5intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+    <img src="_static/N7solo.png" class="logo__image only-dark pst-js-only" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Statistiques
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Premières statistiques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Motivations : Pour quoi faire des statistiques ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Les expériences statistiques et les statistiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec3.html">1.3. Moyenne, variance et fonction de répartition empirique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Lois Usuelles et leurs tabulations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Estimateur : exemple de l’Estimateur de Maximum de Vraisemblance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Estimateur et premiers critères</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec2.html">2.2. Efficacité d’un estimateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Estimateur de Maximum de Vraisemblance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Amélioration théorique d’estimateurs (HP)</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Hypothèses statistique et tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec2.html">3.2. Erreurs et courbe ROC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Test paramétrique simple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec4.html">3.4. Test paramétrique composite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec5.html">3.5. Tests de proportion</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Les modèles gaussiens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Rappels sur la loi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Théorème de Cochran (HP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec3.html">4.3. Test d’égalité de variance et de moyenne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec4.html">4.4. Estimation par régression linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec5.html">4.5. Test d’hypothèse linéaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Deux classes de tests non paramétrique</a><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.1. Statistique de test du <span class="math notranslate nohighlight">\(\chi^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec3.html">5.3. Tester la loi d’observations</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6intro.html">6. <i class="fas fa-book fa-fw"></i>  A propos de la parcimonie</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch7intro.html">7. <i class="fas fa-book fa-fw"></i>  Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec1.html">7.1. Inverse généralisé de fonction de répartition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec2.html">7.2. Inégalités probabilistes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec3.html">7.3. Compléments d’algèbre linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec4.html">7.4. Convergence supplémentaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">8. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html/issues/new?title=Issue%20on%20page%20%2Fch5sec1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch5sec1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Statistique de test du \chi^2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustement-a-une-loi-connue">5.1.1. Ajustement à une loi connue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment-choisir-les-classes-c-1-c-l">5.1.2. Comment choisir les classes <span class="math notranslate nohighlight">\(C_1, ... ,C_l\)</span> ?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-faire-si-les-parametres-definissant-f-0-ne-sont-pas-connus">5.1.3. Que faire si les paramètres définissant <span class="math notranslate nohighlight">\(F_0\)</span> ne sont pas connus ?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="statistique-de-test-du-chi-2">
+<h1><span class="section-number">5.1. </span>Statistique de test du <span class="math notranslate nohighlight">\(\chi^2\)</span><a class="headerlink" href="#statistique-de-test-du-chi-2" title="Link to this heading">#</a></h1>
+<p><span class="math notranslate nohighlight">\(\newcommand{\R}{\mathbb{R}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\Q}{\mathbb{Q}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\N}{\mathbb{N}}\)</span></p>
+<p>On souhaite vérifier que la loi (donnée par sa fonction de répartition <span class="math notranslate nohighlight">\(F\)</span>) de <span class="math notranslate nohighlight">\(X\)</span> est  égale à une certaine loi <span class="math notranslate nohighlight">\(F_0\)</span> donnée (donc parfaitement connue). C’est-à-dire l’on souhaite tester</p>
+<div class="math notranslate nohighlight">
+\[H_0 : F=F_0 \qquad \text{ contre } \qquad H_1 : F\neq F_0.\]</div>
+<p>Ce genre de test s’appellent des <em>test d’ajustement</em>.</p>
+<p>Un des tests les plus utilisé en pratique est le test du <span class="math notranslate nohighlight">\(\chi^2\)</span>, dont nous allons décrire la loi de la statistique.</p>
+<section id="ajustement-a-une-loi-connue">
+<h2><span class="section-number">5.1.1. </span>Ajustement à une loi connue<a class="headerlink" href="#ajustement-a-une-loi-connue" title="Link to this heading">#</a></h2>
+<p>Donnons-nous <span class="math notranslate nohighlight">\(l\in \N^*\)</span> et une partition de <span class="math notranslate nohighlight">\(\R\)</span> en classe <span class="math notranslate nohighlight">\((C_1,...,C_l)\)</span>. L’on se donne <span class="math notranslate nohighlight">\(Z\)</span> qui suit la loi <span class="math notranslate nohighlight">\(F_0\)</span> et l’on pose</p>
+<div class="math notranslate nohighlight">
+\[p_k:=\mathbb{P}(Z \in C_k).\]</div>
+<p>Posons également les variables aléatoires <span class="math notranslate nohighlight">\(U_i^{(k)} := {1}_{C_k}(X_i)\)</span> et <span class="math notranslate nohighlight">\(W^{(k)} := \sum_{i=1}^n U_i^{(k)}\)</span>.</p>
+<p>Enfin, posons la statistique de test</p>
+<div class="math notranslate nohighlight">
+\[ T_n= \sum_{k=1}^l \frac{(W^{(k)}-np_k)^2}{n p_k}\]</div>
+<div class="proof theorem dropdown admonition" id="theorem-0">
+<p class="admonition-title"><span class="caption-number">Theorem 5.1 </span> (Loi asymptotique de <span class="math notranslate nohighlight">\(T_n\)</span>)</p>
+<section class="theorem-content" id="proof-content">
+<div class="proof remark dropdown admonition" id="remark-1">
+<p class="admonition-title"><span class="caption-number">Remark 5.1 </span> (Intuition derriere le théoreme)</p>
+<section class="remark-content" id="proof-content">
+<p>Sous <span class="math notranslate nohighlight">\(H_0\)</span>, <span class="math notranslate nohighlight">\(U_i^{(k)}\)</span> suit une loi de Bernoulli de paramètre <span class="math notranslate nohighlight">\(p_k\)</span> et <span class="math notranslate nohighlight">\(W^{(k)}\)</span> suit une loi Binomiale de  paramètre <span class="math notranslate nohighlight">\(\mathcal{B}in(n,p_k)\)</span> (elle représente le nombre de réalisations présente dans la classe <span class="math notranslate nohighlight">\(C_k\)</span>).</p>
+<p>En particulier, l’on connait son espérance et sa variance : <span class="math notranslate nohighlight">\(\mathbb{E}(W^{(k)})=np_k\)</span> et <span class="math notranslate nohighlight">\(V(W^{(k)})=np_k(1-p_k)\)</span>.</p>
+<p>L’on sait alors avec le théorème central limite que</p>
+<div class="math notranslate nohighlight">
+\[\frac{W^{(k)}-np_k}{\sqrt{np_k(1-p_k)}} \overset{Loi}{\to} \mathcal{N}(0,1)\]</div>
+<p>L’on peut donc raisonnablement supposer que la variable</p>
+<div class="math notranslate nohighlight">
+\[ T=\sum_{k=1}^l \frac{(W^{(k)}-np_k)^2}{n c_k} \]</div>
+<p>soit, à des constantes <span class="math notranslate nohighlight">\(c_k\)</span> près, une variable aléatoire suivant une loi du <span class="math notranslate nohighlight">\(\chi^2\)</span>. Comme chacune des variables ne sont pas indépendantes, il faut néanmoins faire attention (en particulier les constantes ne seront pas <span class="math notranslate nohighlight">\(\sqrt{p_k(1-p_k}\)</span>).</p>
+</section>
+</div><p>Sous l’hypothèse <span class="math notranslate nohighlight">\(H_0\)</span>, la suite de variables aléatoire suivante converge en loi vers une loi du <span class="math notranslate nohighlight">\(\chi^2\)</span> à <span class="math notranslate nohighlight">\(l-1\)</span> degré de liberté :</p>
+<div class="math notranslate nohighlight">
+\[ T_n= \sum_{k=1}^l \frac{(W^{(k)}-np_k)^2}{n p_k} \overset{Loi}{\to} \chi^2_{l-1}\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Nous allons utiliser une généralisation du théorème <span class="xref std std-ref">loirapportvraissemblance</span> à la statistique de test du rapport de vraisemblance pour un paramètre dans <span class="math notranslate nohighlight">\(\R^n\)</span>, qui dit que dans ce cas, le logarithme du maximum du rapport de vraisemblance converge en loi vers une <span class="math notranslate nohighlight">\(\chi^2\)</span> à n degré de liberté.</p>
+<p>La vraisemblance d’un tirage sous la loi <span class="math notranslate nohighlight">\(F_0\)</span> (avec <span class="math notranslate nohighlight">\(p_l=1-\sum_{k&lt;l}p_k\)</span> ) est alors</p>
+<div class="math notranslate nohighlight">
+\[ f_{p_1,...,p_l}(n_1,...,n_l) = C \prod_{k=1}^l p_k^{n_k}\]</div>
+<p>On peut alors facilement montrer que l’estimateur de maximum de vraisemblance des valeurs <span class="math notranslate nohighlight">\(p_i\)</span> est <span class="math notranslate nohighlight">\(\hat{p_i}=\frac{n_i}{n}\)</span>.</p>
+<p>La statistique de rapport des maximums de vraisemblance est alors</p>
+<div class="math notranslate nohighlight">
+\[-2\ln(\Lambda_n):=\frac{f_{p_1,...,p_l}(n_1,...,n_l)}{f_{\hat{p_1},...,\hat{p_{l-1}},}(n_1,...,n_l)}= n^n\prod_{k=1}^l \left(\frac{p_k}{n_k}\right)^{n_k} \]</div>
+<p>D’où comme <span class="math notranslate nohighlight">\(-2\ln(\Lambda_n) = \sum_{k=1}^{l} 2 n_i \ln(\frac{n_k}{n p_k}) \)</span>, l’on aura avec nous <span class="math notranslate nohighlight">\(l-1\)</span> degrés de liberté (puisque <span class="math notranslate nohighlight">\(\sum p_k=1\)</span>) que :</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k=1}^{l} 2 n_k \ln(\frac{n_k}{n p_k}) \overset{loi}{\to} \chi^2_{l-1}.\]</div>
+<p>Mais le membre de gauche n’est pas exactement notre statistique. Posons <span class="math notranslate nohighlight">\(\Delta_i=\frac{n_i-np_i}{np_i}\)</span> et réécrivons notre expression :</p>
+<div class="math notranslate nohighlight">
+\[-2\ln(\Lambda_n)=2 \sum_{k=1}^{l}  n_k \ln(\frac{n_k}{n p_k}), \]</div>
+<div class="math notranslate nohighlight">
+\[=2\sum_{k=1}^{l} (n_k - np_k + np_k) \ln(1+ \Delta_k),\]</div>
+<div class="math notranslate nohighlight">
+\[=2\sum_{k=1}^{l} \left[(n_k - np_k) + np_k)\right] (\Delta_k- \frac{1}{2} \Delta_k^2 + O(\Delta^3),\]</div>
+<div class="math notranslate nohighlight">
+\[=2\sum_{k=1}^{l} (n_k - np_k)\Delta_k + np_k \Delta_k - \frac{np_k}{2} \Delta_k^2 + O(n\Delta^3),\]</div>
+<p>Or maintenant, comme <span class="math notranslate nohighlight">\(\sum_{k=1}^{l}np_k \Delta_k = \sum_{k=1}^{l} n_i - np_i = n-n=0  \)</span> et comme <span class="math notranslate nohighlight">\((n_k - np_k)=np_k \Delta_k\)</span>, l’on a que :</p>
+<div class="math notranslate nohighlight">
+\[ -2\ln(\Lambda_n) = \sum_{k=1}^{l} np_k\Delta_k^2 +O(n\Delta^3) \]</div>
+<p>Enfin, avec la loi forte des grands nombres, <span class="math notranslate nohighlight">\(\sqrt{n}\Delta_k\)</span> converge en loi vers une loi normale, donc avec le lemme de Slusky et une composition avec une application continue,</p>
+<div class="math notranslate nohighlight">
+\[\frac{n}{\sqrt{n}^3}\cdot (\sqrt{n}\Delta_k)^3 =\frac{}{\sqrt{n}}\cdot (\sqrt{n}\Delta_k)^3   \]</div>
+<p>converge en loi vers 0, donc en probabilité vers 0. L’on a bien alors que la statistique <span class="math notranslate nohighlight">\( T_n\)</span> à la même loi asymptotique que la statistique de rapport des maximums de vraisemblance.</p>
+</div>
+<div class="proof remark dropdown admonition" id="remark-2">
+<p class="admonition-title"><span class="caption-number">Remark 5.2 </span> (Preuve alternative)</p>
+<section class="remark-content" id="proof-content">
+<p>L’on peut remarquer que <span class="math notranslate nohighlight">\(T_n\)</span> est en fait la norme du vecteur <span class="math notranslate nohighlight">\((\frac{n_k-np_k}{\sqrt{np_k}})_{k \in \{1,...,l\}}\)</span>. Or l’on peut montrer que ce vecteur est de matrice de covariance :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} Cov(\frac{n_k-np_k}{\sqrt{np_k}}) = Id_{l}-
+\begin{pmatrix}
+    \sqrt{p_1}\\\vdots\\ \sqrt{p_l}
+\end{pmatrix}\times \begin{pmatrix}
+    \sqrt{p_1}&amp;\cdots&amp; \sqrt{p_l}
+\end{pmatrix}:= \Gamma(F_0)\end{split}\]</div>
+<p>Qui est la matrice de projection sur l’orthogonal de l’espace engendré par <span class="math notranslate nohighlight">\(\begin{pmatrix}
+    \sqrt{p_1}\\\vdots\\ \sqrt{p_l}
+\end{pmatrix}\)</span>.</p>
+<p>Comme avec le théorème central limite, nous avons la convergence en loi vectorielle</p>
+<div class="math notranslate nohighlight">
+\[\frac{n_k-np_k}{\sqrt{np_k}} \to \mathcal{N}(0,\Gamma(F_0))\]</div>
+<p>le théorème de Cochran permet de conclure sur la loi asymptotique de <span class="math notranslate nohighlight">\(T_n\)</span>.</p>
+</section>
+</div></section>
+</div><p>Cette loi asymptotique permet encore une fois de créer un test, portant sur notre hypothèse <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+<div class="proof definition admonition" id="definition-3">
+<p class="admonition-title"><span class="caption-number">Definition 5.1 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\(F_0\)</span> une loi, <span class="math notranslate nohighlight">\((C_i)\)</span> une partition de <span class="math notranslate nohighlight">\(\R\)</span> en classes, et <span class="math notranslate nohighlight">\(T \)</span> défini comme ci-dessus.</p>
+<p>Si l’on se donne <span class="math notranslate nohighlight">\(\alpha\)</span> un risque de première espèce, et <span class="math notranslate nohighlight">\(s_\alpha\)</span> le quantile d’ordre <span class="math notranslate nohighlight">\(1-\alpha\)</span> d’une loi du <span class="math notranslate nohighlight">\(\chi^2_{l-1}\)</span>,</p>
+<p>Alors le test</p>
+<div class="math notranslate nohighlight">
+\[\text{On rejette }H_0 \text{ si }\ T&gt;s_\alpha \qquad  \text{On ne rejette pas }H_0 \text{ si }\ T\leq s_\alpha\]</div>
+<p>est un test de niveau asymptotique <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+</section>
+</div><figure class="align-default" id="fig-testchi2">
+<a class="reference internal image-reference" href="_images/test_chi_2.png"><img alt="_images/test_chi_2.png" src="_images/test_chi_2.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Illustration du test du <span class="math notranslate nohighlight">\(\chi^2\)</span> avec l = 50 classes</span><a class="headerlink" href="#fig-testchi2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="proof remark dropdown admonition" id="remark-4">
+<p class="admonition-title"><span class="caption-number">Remark 5.3 </span></p>
+<section class="remark-content" id="proof-content">
+<p>La densité d’une loi du <span class="math notranslate nohighlight">\(\chi^2_{l-1}\)</span> à <span class="math notranslate nohighlight">\(l-1\)</span> degré de liberté a pour densité</p>
+<div class="math notranslate nohighlight">
+\[ f_{\chi^2_{l-1}}(x)=x\mapsto \frac{x^{\frac{1}{2}(k-2)}e^{-\frac{x}{2}}}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}{1}_{\R^+}(x).\]</div>
+<p>Lors de calculs explicite, l’on préfèrera se rapporter à une table des valeurs de la fonction de répartition plutôt qu’un calcul d’intégral numérique pour trouver le quantile d’ordre <span class="math notranslate nohighlight">\(1-\alpha\)</span>.</p>
+</section>
+</div></section>
+<section id="comment-choisir-les-classes-c-1-c-l">
+<h2><span class="section-number">5.1.2. </span>Comment choisir les classes <span class="math notranslate nohighlight">\(C_1, ... ,C_l\)</span> ?<a class="headerlink" href="#comment-choisir-les-classes-c-1-c-l" title="Link to this heading">#</a></h2>
+<p>Il est d’usage de demander que le nombre moyen
+d’observations par classe <span class="math notranslate nohighlight">\(np_k\)</span> soit supérieur à 5 pour toutes les classes, <em>i.e.</em></p>
+<div class="math notranslate nohighlight">
+\[ \min\limits_{k\in \{1,...,l\}}np_k &gt; 5.\]</div>
+<p>Pour faciliter cela, on détermine des classes <span class="math notranslate nohighlight">\(C_k\)</span> de manière à avoir</p>
+<div class="math notranslate nohighlight">
+\[p_k\approx\frac{1}{l}.\]</div>
+<p>Pour des raisons de simplicité, lorsque le test est effectué à la main, on choisit un nombre de classes faible : <span class="math notranslate nohighlight">\(l=3, 4\)</span> ou <span class="math notranslate nohighlight">\(5\)</span>. Dans le cas d’une loi <span class="math notranslate nohighlight">\(F_0\)</span> ayant une symétrique par rapport à sa moyenne, on pourra profiter de la symétrie pour avoir l’équiprobabilité en prenant <span class="math notranslate nohighlight">\(l\)</span> pair (par exemple l=4).</p>
+</section>
+<section id="que-faire-si-les-parametres-definissant-f-0-ne-sont-pas-connus">
+<h2><span class="section-number">5.1.3. </span>Que faire si les paramètres définissant <span class="math notranslate nohighlight">\(F_0\)</span> ne sont pas connus ?<a class="headerlink" href="#que-faire-si-les-parametres-definissant-f-0-ne-sont-pas-connus" title="Link to this heading">#</a></h2>
+<p>Il arrive bien souvent que seule la forme de la loi <span class="math notranslate nohighlight">\(F_0\)</span> soit connue via la modélisation (loi de Poisson, normale…), mais que l’on ignore certains paramètres. L’on pourra alors estimer à l’aide de l’échantillon ces paramètres.</p>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 5.2 </span> (Loi de la statistique avec estimation de paramètres)</p>
+<section class="theorem-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\(m \in \N^*\)</span> un entier et <span class="math notranslate nohighlight">\(F_0(\theta_1, \cdots, \theta_m)\)</span> une famille de loi. Si l’on note <span class="math notranslate nohighlight">\((\hat{\theta_i})\)</span>  l’estimateur de maximum de vraisemblance des paramètres de la loi, <span class="math notranslate nohighlight">\(\hat{p_k} = \mathbb{P}_{F_0(\hat{\theta_1}, \cdots, \hat{\theta_m})}(X\in C_k)\)</span> et <span class="math notranslate nohighlight">\(n_k\)</span> le nombre de résultats présent dans la classe <span class="math notranslate nohighlight">\(C_k\)</span>, alors</p>
+<div class="math notranslate nohighlight">
+\[T_n := \sum_{k=1}^l \frac{(n_k-n\hat{p_k})^2}{n \hat{p_k}} \overset{Loi}{\to} \chi^2_{l-m-1}\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Voir <span id="id1">[<a class="reference internal" href="biblio.html#id11" title="A. Stuart M. Kendall. The Advanced Theory of Statistics. Volume 2, Inference and Relationship. Volume 2. Journal of the Royal Statistical Society Series C, 1962. doi:10.2307/2985294.">M. Kendall, 1962</a>]</span> points 30.11 à 30.19.</p>
+<p>Une autre preuve possible est d’estimer plus finement le maximum de vraisemblance avec l’information de Fisher et le gradient de la Log-vraisemblance, avant d’étudier le comportement asymptotique de couple <span class="math notranslate nohighlight">\((T_n,\hat{\theta})\)</span> puis de conclure avec le théorème de Cochran.</p>
+</div>
+</section>
+</div><p>Ainsi, on réduira le nombre de degrés de liberté de la loi du <span class="math notranslate nohighlight">\(\chi^2\)</span> utilisée pour le test d’ajustement selon le
+nombre de paramètres estimés <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch5intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span><i class="fas fa-book fa-fw"></i> Deux classes de tests non paramétrique</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch5sec2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustement-a-une-loi-connue">5.1.1. Ajustement à une loi connue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment-choisir-les-classes-c-1-c-l">5.1.2. Comment choisir les classes <span class="math notranslate nohighlight">\(C_1, ... ,C_l\)</span> ?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-faire-si-les-parametres-definissant-f-0-ne-sont-pas-connus">5.1.3. Que faire si les paramètres définissant <span class="math notranslate nohighlight">\(F_0\)</span> ne sont pas connus ?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By P. Fraux
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://p-fraux.github.io/Cours-Mathematiques/intro.html"> Mathematiques de première année</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

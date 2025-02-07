@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.3. Moyenne, variance et fonction de répartition empirique &#8212; Initiation aux statistiques - Notions et analyse statistique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/mystyle-checkpoint.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/js/all.min.js?v=ec35c6c9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch1sec3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.4. Lois Usuelles et leurs tabulations" href="ch1sec4.html" />
+    <link rel="prev" title="1.2. Les expériences statistiques et les statistiques" href="ch1sec2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/N7solo.png" class="logo__image only-light" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+    <img src="_static/N7solo.png" class="logo__image only-dark pst-js-only" alt="Initiation aux statistiques - Notions et analyse statistique - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue au cours de Statistiques
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ch1intro.html">1. <i class="fas fa-book fa-fw"></i> Premières statistiques</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch1sec1.html">1.1. Motivations : Pour quoi faire des statistiques ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec2.html">1.2. Les expériences statistiques et les statistiques</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.3. Moyenne, variance et fonction de répartition empirique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch1sec4.html">1.4. Lois Usuelles et leurs tabulations</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch2intro.html">2. <i class="fas fa-book fa-fw"></i> Estimateur : exemple de l’Estimateur de Maximum de Vraisemblance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec1.html">2.1. Estimateur et premiers critères</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec2.html">2.2. Efficacité d’un estimateur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec3.html">2.3. Estimateur de Maximum de Vraisemblance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2sec4.html">2.4. Amélioration théorique d’estimateurs (HP)</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch3intro.html">3. <i class="fas fa-book fa-fw"></i> Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec1.html">3.1. Hypothèses statistique et tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec2.html">3.2. Erreurs et courbe ROC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec3.html">3.3. Test paramétrique simple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec4.html">3.4. Test paramétrique composite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3sec5.html">3.5. Tests de proportion</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch4intro.html">4. <i class="fas fa-book fa-fw"></i> Les modèles gaussiens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec1.html">4.1. Rappels sur la loi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec2.html">4.2. Théorème de Cochran (HP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec3.html">4.3. Test d’égalité de variance et de moyenne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec4.html">4.4. Estimation par régression linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch4sec5.html">4.5. Test d’hypothèse linéaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch5intro.html">5. <i class="fas fa-book fa-fw"></i> Deux classes de tests non paramétrique</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec1.html">5.1. Statistique de test du <span class="math notranslate nohighlight">\(\chi^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec2.html">5.2. Test du <span class="math notranslate nohighlight">\(\chi^2\)</span> : test d’homogénéité et tests d’indépendance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5sec3.html">5.3. Tester la loi d’observations</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6intro.html">6. <i class="fas fa-book fa-fw"></i>  A propos de la parcimonie (H.P.)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ch7intro.html">7. <i class="fas fa-book fa-fw"></i>  Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec1.html">7.1. Inverse généralisé de fonction de répartition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec2.html">7.2. Inégalités probabilistes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec3.html">7.3. Compléments d’algèbre linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7sec4.html">7.4. Convergence supplémentaire</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">8. <i class="fa-solid fa-book-open"></i> Bibliographie</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://p-fraux.github.io/Statistiques/intro.html/issues/new?title=Issue%20on%20page%20%2Fch1sec3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch1sec3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Moyenne, variance et fonction de répartition empirique</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="moyenne-variance-et-fonction-de-repartition-empirique">
+<span id="statistiques-usuelles"></span><h1><span class="section-number">1.3. </span>Moyenne, variance et fonction de répartition empirique<a class="headerlink" href="#moyenne-variance-et-fonction-de-repartition-empirique" title="Link to this heading">#</a></h1>
+<p><span class="math notranslate nohighlight">\(\newcommand{\R}{\mathbb{R}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\Q}{\mathbb{Q}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\N}{\mathbb{N}}\)</span></p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Moyenne empirique</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Variance empirique</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Fonction de répartition empirique</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>La statistique que l’on voit le plus souvent est celle de la moyenne empirique :</p>
+<div class="proof definition admonition" id="Moydef">
+<p class="admonition-title"><span class="caption-number">Definition 1.3 </span> (Moyenne empirique)</p>
+<section class="definition-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires. On appelle moyenne empirique la variable aléatoire</p>
+<div class="math notranslate nohighlight">
+\[\overline{X}=\frac{1}{n}\sum_{i=1}^nX_i.\]</div>
+<p>On la note aussi parfois <span class="math notranslate nohighlight">\(\overline{X}_n\)</span>. On note <span class="math notranslate nohighlight">\(\overline{x}\)</span> une réalisation de la moyenne empirique.</p>
+</section>
+</div><p>On l’utilisera dans le cadre de variables aléatoire indépendantes et identiquement distribuées. Elle est naturelle : il s’agit de remplacer une intégrale par sa version discrète, en espérant approcher suffisamment la quantité finale.</p>
+<div class="proof property admonition" id="Moyprop">
+<p class="admonition-title"><span class="caption-number">Property 1.1 </span></p>
+<section class="property-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires indépendantes et identiquement distribuées ayant un moment d’ordre 2. On note <span class="math notranslate nohighlight">\(m=\mathbb{E}(X_1)\)</span> leur moyenne et <span class="math notranslate nohighlight">\(\sigma^2=V(X_1)\)</span> leur variance commune. Alors :</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(\overline{X}) = m, \qquad V(\overline{X})=\frac{\sigma^2}{n},\]</div>
+<div class="math notranslate nohighlight">
+\[\overline{X}\overset{L^2}{\to} m, \qquad \sqrt{n}\frac{\overline{X}-m}{\sigma}\overset{Loi}{\to}\mathcal{N}(0,1)\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Les deux premiers points sont des conséquences immédiates des propriétés de l’espérance et de la variance. Les deux derniers points sont les conséquences de la loi des grands nombres et du théorème central limite, dont les hypothèses sont clairement vérifiées.</p>
+</div>
+</section>
+</div></div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 1.4 </span> (Variance empirique)</p>
+<section class="definition-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires, on appelle variance empirique des <span class="math notranslate nohighlight">\((X_i)\)</span> la quantité</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{n}\sum_{i=1}^n \left(X_i-\overline{X}\right)^2.\]</div>
+<p>On appelle écart-type empirique débiaisé la quantité</p>
+<div class="math notranslate nohighlight">
+\[S_X^2\overset{def}{=}\frac{1}{n-1}\sum_{i=1}^n \left(X_i-\overline{X}\right)^2.\]</div>
+</section>
+</div><p>La variance empirique étant une variable aléatoire, elle peut avoir une espérance et une variance si les variables aléatoire <strong>n’explosent</strong> pas.</p>
+<div class="proof property dropdown admonition" id="moy_var_empirique">
+<span id="moy-var-empirique"></span><p class="admonition-title"><span class="caption-number">Property 1.2 </span> (Espérance de la variance empirique)</p>
+<section class="property-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires indépendantes et identiquement distribuées ayant un moment d’ordre 2, alors</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[\frac{1}{n}\sum_{i=1}^n \left(X_i-\overline{X}\right)^2\right]=\frac{n-1}{n}\sigma^2.\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Commençons par remarquer que pour <span class="math notranslate nohighlight">\(m\in \R\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^n(X_i-\overline{X})^2 =\sum_{i=1}^n(X_i-m)^2 - n(\overline{X}-m)^2.\]</div>
+<p>En effet,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^n(X_i-\overline{X})^2 =\sum_{i=1}^n\left(X_i-m-(\overline{X}-m)\right)^2,\]</div>
+<div class="math notranslate nohighlight">
+\[=\sum_{i=1}^n(X_i-m)^2+(\overline{X}-m)^2-2(\overline{X}-m)(X_i-m),\]</div>
+<div class="math notranslate nohighlight">
+\[=\sum_{i=1}^n(X_i-m)^2+\sum_{i=1}^n(\overline{X}-m)^2-\sum_{i=1}^n2(\overline{X}-m)(X_i-m),\]</div>
+<div class="math notranslate nohighlight">
+\[= \sum_{i=1}^n(X_i-m)^2+ n (\overline{X}-m)^2 - 2(\overline{X}-m)\sum_{i=1}^n(X_i-m),\]</div>
+<div class="math notranslate nohighlight">
+\[= \sum_{i=1}^n(X_i-m)^2+ n (\overline{X}-m)^2-2n(\overline{X}-m)^2,\]</div>
+<div class="math notranslate nohighlight">
+\[=\sum_{i=1}^n(X_i-m)^2- n (\overline{X}-m)^2.\]</div>
+<p>En prenant alors <span class="math notranslate nohighlight">\(m=\mathbb{E}(X_1)\)</span> et en intégrant l’égalité précédente, nous obtenons que</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(\sum_{i=1}^n(X_i-\overline{X})^2 )=\mathbb{E}\left(\sum_{i=1}^n(X_i-m)^2- n (\overline{X}-m)^2\right),\]</div>
+<div class="math notranslate nohighlight">
+\[=nV(X_1)-nV(\overline{X}),\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(\sum_{i=1}^n(X_i-\overline{X})^2 )=(n-1)V(X_1).\]</div>
+<p>Ce qui nous donne bien le résultat annoncé.</p>
+</div>
+</section>
+</div><div class="docutils">
+<div class="proof property dropdown admonition" id="property-4">
+<p class="admonition-title"><span class="caption-number">Property 1.3 </span> (Variance de la variance empirique)</p>
+<section class="property-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires indépendantes et identiquement distribuées ayant un moment d’ordre 4, alors en notant <span class="math notranslate nohighlight">\(\mu\)</span> le moment d’ordre 4 commun et <span class="math notranslate nohighlight">\(\sigma^2\)</span> la variance commune, l’on a</p>
+<div class="math notranslate nohighlight">
+\[V(S_X^2)=\frac{1}{n}\left(\mu-\frac{n-3}{n-1}\sigma^4\right).\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Commençons par remarquer que pour <span class="math notranslate nohighlight">\(m\in \R\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^n(X_i-\overline{X})^2 =\sum_{i=1}^n(X_i-m)^2 - n(\overline{X}-m)^2.\]</div>
+<p>En effet,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^n(X_i-\overline{X})^2 =\sum_{i=1}^n\left(X_i-m-(\overline{X}-m)\right)^2,\]</div>
+<div class="math notranslate nohighlight">
+\[=\sum_{i=1}^n(X_i-m)^2+(\overline{X}-m)^2-2(\overline{X}-m)(X_i-m),\]</div>
+<div class="math notranslate nohighlight">
+\[=\sum_{i=1}^n(X_i-m)^2+\sum_{i=1}^n(\overline{X}-m)^2-\sum_{i=1}^n2(\overline{X}-m)(X_i-m),\]</div>
+<div class="math notranslate nohighlight">
+\[= \sum_{i=1}^n(X_i-m)^2+ n (\overline{X}-m)^2 - 2(\overline{X}-m)\sum_{i=1}^n(X_i-m),\]</div>
+<div class="math notranslate nohighlight">
+\[= \sum_{i=1}^n(X_i-m)^2+ n (\overline{X}-m)^2-2n(\overline{X}-m)^2,\]</div>
+<div class="math notranslate nohighlight">
+\[=\sum_{i=1}^n(X_i-m)^2- n (\overline{X}-m)^2.\]</div>
+<p>En prenant alors <span class="math notranslate nohighlight">\(m=\mathbb{E}(X_1)\)</span> et en intégrant l’égalité précédente, nous obtenons que</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(\sum_{i=1}^n(X_i-\overline{X})^2 )=\mathbb{E}\left(\sum_{i=1}^n(X_i-m)^2- n (\overline{X}-m)^2\right),\]</div>
+<div class="math notranslate nohighlight">
+\[=nV(X_1)-nV(\overline{X}),\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(\sum_{i=1}^n(X_i-\overline{X})^2 )=(n-1)V(X_1).\]</div>
+<p>Ce qui nous donne bien le résultat annoncé.</p>
+</div>
+</section>
+</div></div>
+<div class="docutils">
+<p>Un résultat important qui permet de calibrer de nombreux tests, que nous reverrons dans <a class="reference internal" href="ch4sec2.html#cochran"><span class="std std-ref">Théorème de Cochran (HP)</span></a>, est le suivant</p>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 1.1 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)\)</span> une suite iid de variables, de loi <span class="math notranslate nohighlight">\(\mathcal{N}(m,\sigma^2)\)</span>. Alors :</p>
+<div class="math notranslate nohighlight">
+\[\overline{X} \sim \mathcal{N}(m,\frac{\sigma^2}{n}),\]</div>
+<div class="math notranslate nohighlight">
+\[\overline{X} \text{ et } S_X^2 \text{ sont indépendants,}\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{(n-1)S_X^2}{\sigma^2} = \frac{\sum_{i=1}^n \left(X_i-\overline{X}\right)^2}{\sigma^2}\sim \chi_{n-1}^2 \quad\text{ loi du chi-2 à (n-1) degré de libertés.}\]</div>
+</section>
+</div></div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>Si nous voulons conserver toute l’information, quoi de mieux que la fonction de répartition ? En effet, elle contient toute l’information de la loi selon laquelle ont été tirés nos observations. C’est dans cette philosophie d’approche de la fonction de répartition théorique que nous posons la définition suivante :</p>
+<div class="proof definition admonition" id="definition-6">
+<p class="admonition-title"><span class="caption-number">Definition 1.5 </span> (Fonction de répartition empirique)</p>
+<section class="definition-content" id="proof-content">
+<p>Soient <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires, et <span class="math notranslate nohighlight">\((x_i)\)</span> une réalisation. On définit la fonction de répartition empirique de ces réalisations comme la fonction :</p>
+<div class="math notranslate nohighlight">
+\[F_n : t\mapsto \frac{Card\{k\in [\![1,n]\!], x_k \leq t\}}{n} = \frac{1}{n} \sum_{k=1}^n 1_{]-\infty,t]}(x_k).\]</div>
+</section>
+</div><div class="proof remark dropdown admonition" id="remark-7">
+<p class="admonition-title"><span class="caption-number">Remark 1.3 </span></p>
+<section class="remark-content" id="proof-content">
+<p>La fonction de répartition empirique est un exemple de fonction aléatoire.</p>
+<p>La fonction de répartition empirique n’est pas continue. Elle a n points de discontinuités.</p>
+<figure class="align-default" id="fdr-exp">
+<a class="reference internal image-reference" href="_images/FdR-exp.png"><img alt="_images/FdR-exp.png" src="_images/FdR-exp.png" style="height: 350px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Un tirage de fonction de répartition</span><a class="headerlink" href="#fdr-exp" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</div><p>La fonction de répartition empirique porte bien sont nom, vu qu’elle converge vers la fonction de répartition.</p>
+<div class="proof property admonition" id="property-8">
+<p class="admonition-title"><span class="caption-number">Property 1.4 </span> (Convergence simple)</p>
+<section class="property-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires indépendantes et identiquement distribuées, <span class="math notranslate nohighlight">\(F\)</span> la fonction caractéristique de la loi commune, <span class="math notranslate nohighlight">\(F_n\)</span> la fonction caractéristique empirique correspondante et <span class="math notranslate nohighlight">\(t\in\R\)</span>. Alors :</p>
+<div class="math notranslate nohighlight">
+\[\lim\limits_{n\to+\infty}F_n(t) \overset{p.s.}{=} F(t).\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. On a que</p>
+<div class="math notranslate nohighlight">
+\[n F_n(t)=\sum_{k=1}^n 1_{]-\infty,t]}(X_k)\sim \mathcal{B}in(n, F(t)).\]</div>
+<p>la loi forte des grands nombres permet de conclure. En effet, pour <span class="math notranslate nohighlight">\(X_n \sim \mathcal{B}in(n,p)\)</span>, la convergence <span class="math notranslate nohighlight">\(\frac{X_n}{n}\overset{p.s.}{\to} p\)</span> est toujours vraie.</p>
+</div>
+</section>
+</div><div class="docutils">
+<p>Nous pouvons l’observer via des simulations numériques :</p>
+<div class="proof remark dropdown admonition" id="remark-9">
+<p class="admonition-title"><span class="caption-number">Remark 1.4 </span></p>
+<section class="remark-content" id="proof-content">
+<figure class="align-default" id="fdr-exp-n-4">
+<a class="reference internal image-reference" href="_images/FdR-exp-n=4.png"><img alt="_images/FdR-exp-n%3D4.png" src="_images/FdR-exp-n%3D4.png" style="height: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Un tirage de fonction de répartition pour 4 observations</span><a class="headerlink" href="#fdr-exp-n-4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fdr-exp-n-10">
+<a class="reference internal image-reference" href="_images/FdR-exp-n=10.png"><img alt="_images/FdR-exp-n%3D10.png" src="_images/FdR-exp-n%3D10.png" style="height: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.4 </span><span class="caption-text">Un tirage de fonction de répartition pour 10 observations</span><a class="headerlink" href="#fdr-exp-n-10" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fdr-exp-n-100">
+<a class="reference internal image-reference" href="_images/FdR-exp-n=100.png"><img alt="_images/FdR-exp-n%3D100.png" src="_images/FdR-exp-n%3D100.png" style="height: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.5 </span><span class="caption-text">Un tirage de fonction de répartition pour 100 observations</span><a class="headerlink" href="#fdr-exp-n-100" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</div></div>
+<div class="proof property dropdown admonition" id="property-10">
+<p class="admonition-title"><span class="caption-number">Property 1.5 </span> (Convergence uniforme)</p>
+<section class="property-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires indépendantes et identiquement distribuées, <span class="math notranslate nohighlight">\(F\)</span> la fonction caractéristique de la loi commune, <span class="math notranslate nohighlight">\(F_n\)</span> la fonction caractéristique empirique correspondante. Alors presque surement,</p>
+<div class="math notranslate nohighlight">
+\[F_n \overset{CVU}{\to} F.\]</div>
+<p>De plus, la loi de <span class="math notranslate nohighlight">\(\sup\limits_{t\in \R} |F_n(t)-F(t)|\)</span> ne dépend que de n, et pas de la loi commune des variables aléatoires.</p>
+<div class="proof admonition" id="proof">
+<p>Proof. Il s’agit en fait d’une généralisation du deuxième théorème de Dini, auquel nous allons nous ramener.</p>
+<p>Pour cela, on définit l’inverse généralisé de F comme la fonction</p>
+<div class="math notranslate nohighlight">
+\[F^{\leftarrow} : s \mapsto \inf \{x,\ F(x)\geq s\}\]</div>
+<p>qui vérifie <span class="math notranslate nohighlight">\(\{F^{\leftarrow}(u)\leq t\}\iff\{u\leq F(t)\}\)</span></p>
+<p>On se donne alors une suite de variable aléatoire indépendante <span class="math notranslate nohighlight">\((U_i)\)</span> de loi uniforme sur <span class="math notranslate nohighlight">\([0,1]\)</span>, et alors la fonction de répartition des variables <span class="math notranslate nohighlight">\(F^{\leftarrow} \circ U_i\)</span> est la fonction F. En particulier, nous avons les égalités en loi suivante :</p>
+<div class="math notranslate nohighlight">
+\[\sup\limits_{t\in \R}\left|F_n(t)-F(t)\right| = \sup\limits_{t\in \R}\left|\frac{1}{n}\sum_{k=1}^n1_{\{F^{\leftarrow} \circ U_k\leq t\}} -F(t)\right|, \]</div>
+<div class="math notranslate nohighlight">
+\[=  \sup\limits_{t\in \R}\left|\frac{1}{n}\sum_{k=1}^n1_{\{ U_k\leq F(t)\}} -F(t)\right|,\]</div>
+<p>c’est à dire en changeant de variable que :</p>
+<div class="math notranslate nohighlight">
+\[\sup\limits_{t\in \R}\left|F_n(t)-F(t)\right|=\sup\limits_{s\in F(\R)}\left|\frac{1}{n}\sum_{k=1}^n1_{\{ U_k\leq s\}} -s\right|,\]</div>
+<p>et donc</p>
+<div class="math notranslate nohighlight">
+\[\sup\limits_{t\in \R}\left|F_n(t)-F(t)\right|=\sup\limits_{s\in [0,1]}\left|\frac{1}{n}\sum_{k=1}^n1_{\{ U_k\leq s\}} -s\right|.\]</div>
+<p>Remarquons dès à présent que nous venons de montrer le deuxième point : la loi du plus grand écart entre fonction de répartition empirique et théorique est indépendante de la loi commune.</p>
+<p>Grâce à la loi forte des grands nombres, pour tout <span class="math notranslate nohighlight">\(s \in [0,1]\)</span>, nous avons convergence presque sûre de <span class="math notranslate nohighlight">\(|\frac{1}{n}\sum_{k=1}^n1_{\{ U\leq s\}} \)</span> vers <span class="math notranslate nohighlight">\(s\)</span>. Notons <span class="math notranslate nohighlight">\(A_s\)</span> l’ensemble des expériences pour lesquelles il y a convergence, et l’on aura <span class="math notranslate nohighlight">\(\mathbb{P}(A_s)=1\)</span>. Nous aimerions en déduire une convergence presque sûre en tout <span class="math notranslate nohighlight">\(s\in [0,1]\)</span>, mais cet ensemble est indénombrable. Nous allons donc donner un argument supplémentaire pour dépasser cet obstacle.</p>
+<p>Tout d’abord, <span class="math notranslate nohighlight">\([0,1]\cap\mathbb{Q}\)</span> est dénombrable, donc</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{P}(\bigcap_{s\in [0,1]\cap \Q}\left\{\omega, \omega \in A_s\right\})=1\]</div>
+<p>Soit <span class="math notranslate nohighlight">\(s\in [0,1]\)</span> et <span class="math notranslate nohighlight">\((v_l)_{l\in \N}\)</span> une suite croissante et <span class="math notranslate nohighlight">\((w_l)_{l\in \N}\)</span> une suite décroissante de limite commune s. Soit alors <span class="math notranslate nohighlight">\(l\in \N\)</span>, alors pour tout <span class="math notranslate nohighlight">\(n\in \N\)</span>, par croissance des ensembles correspondants, pour tout <span class="math notranslate nohighlight">\(\omega \in A:= \cap_{s\in\Q} A_s\)</span>, l’on a l’inégalité numérique suivante :</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq v_l\}}\leq \frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq s\}}\leq \frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq w_l\}}.\]</div>
+<p>En passant alors à la limite respectivement inférieure et supérieure dans les deux inégalités quand <span class="math notranslate nohighlight">\(n\)</span> tend vers l’infini, l’on obtient</p>
+<div class="math notranslate nohighlight">
+\[v_l\leq \liminf\limits_{n\to+\infty}\frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq s\}}\leq\limsup\limits_{n\to+\infty}\frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq s\}}\leq w_l.\]</div>
+<p>Maintenant, comme les termes centraux sont indépendants de l, nous obtenons par encadrement que</p>
+<div class="math notranslate nohighlight">
+\[\liminf\limits_{n\to+\infty}\frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq s\}}=\limsup\limits_{n\to+\infty}\frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq s\}}=s\]</div>
+<p>Donc pour tout <span class="math notranslate nohighlight">\(\omega \in A\)</span>, nous avons bien pour tout <span class="math notranslate nohighlight">\(s\in [0,1]\)</span> la convergence simple suivante  <span class="math notranslate nohighlight">\( \lim\limits_{n\to+\infty}\frac{1}{n}\sum_{k=1}^n1_{\{ U_k(\omega)\leq s\}}=s\)</span>.</p>
+<p>Nous pouvons alors conclure grâce au deuxième théorème de Dini qui énonce que la convergence simple d’une suite <span class="math notranslate nohighlight">\((f_n)\)</span> de fonctions réelles d’une variable réelle définies et croissantes (non nécessairement continues) sur un segment <span class="math notranslate nohighlight">\([a, b]\)</span> de <span class="math notranslate nohighlight">\(\R\)</span> vers une fonction continue <span class="math notranslate nohighlight">\(f\)</span> sur <span class="math notranslate nohighlight">\([a, b]\)</span> implique la convergence uniforme. Notons d’abord que la fonction f est croissante comme limite simple de fonctions croissante.</p>
+<p>Soit <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, et on fixe <span class="math notranslate nohighlight">\(k\)</span> un entier tel que <span class="math notranslate nohighlight">\(k\geq \frac{f(a)-f(b)}{\epsilon}\)</span>.
+D’après le théorème des valeurs intermédiaires appliqué à f, il existe <span class="math notranslate nohighlight">\((a_i)\)</span> une subdivision (<span class="math notranslate nohighlight">\(a=a_0&lt;a_1&lt;\cdots&lt;a_{k-1}&lt;a_k=b\)</span> telle que <span class="math notranslate nohighlight">\(\forall i \in [\![0,k-1]\!], f(a_i)-f(a_{i+1}) \leq \epsilon\)</span>.</p>
+<p>On se donne à présent un <span class="math notranslate nohighlight">\(N\)</span> tel que</p>
+<div class="math notranslate nohighlight">
+\[\forall n\geq N,\forall i \in [\![0,k]\!], |f_n(a_i)-f(a_i)|\leq \epsilon\]</div>
+<p>Soit à présent <span class="math notranslate nohighlight">\(n\geq N\)</span> et on se donne un <span class="math notranslate nohighlight">\(x\in [a,b[\)</span>, et l’on note <span class="math notranslate nohighlight">\(i\)</span> l’indice tel que <span class="math notranslate nohighlight">\(a_i\leq x&lt;a_{i+1}\)</span>.</p>
+<p>Maintenant, comme <span class="math notranslate nohighlight">\(f_n\)</span> et <span class="math notranslate nohighlight">\(f\)</span> sont croissantes, <span class="math notranslate nohighlight">\(f_n(a_i)\leq f_n(x)\leq f_n(a_{i+1})\)</span> et <span class="math notranslate nohighlight">\(f(a_i)\leq f(x)\leq f(a_{i+1})\)</span>.</p>
+<p>Finalement,</p>
+<div class="math notranslate nohighlight">
+\[|f_n(x)-f(x)|\leq |f_n(x) - f_n(a_i)| + |f_n(a_i)-f(a_i) |+ |f(a_i)-f(x)|\]</div>
+<div class="math notranslate nohighlight">
+\[\leq  |f_n(a_{i+1}) - f_n(a_i)| + |f_n(a_i)-f(a_i) |+\epsilon ,\]</div>
+<div class="math notranslate nohighlight">
+\[        \leq 3\epsilon + \epsilon +\epsilon.\]</div>
+<p>Ce qui nous donne bien la convergence uniforme.</p>
+</div>
+</section>
+</div><div class="docutils">
+<div class="proof property dropdown admonition" id="property-11">
+<p class="admonition-title"><span class="caption-number">Property 1.6 </span> (Vitesse de la convergence en probabilité : <em>Dvoretzky, Kiefer, Wolfowitz et Massart</em>)</p>
+<section class="property-content" id="proof-content">
+<p>Soit <span class="math notranslate nohighlight">\((X_i)_{i\in [\![1,n]\!]}\)</span> des variables aléatoires indépendantes et identiquement distribuées, <span class="math notranslate nohighlight">\(F\)</span> la fonction caractéristique de la loi commune, <span class="math notranslate nohighlight">\(F_n\)</span> la fonction caractéristique empirique correspondante et <span class="math notranslate nohighlight">\(t\in\R\)</span>. Alors :</p>
+<div class="math notranslate nohighlight">
+\[\forall \epsilon&gt;0, \mathbb{P}(\sup\limits_{t\in\R}|F_n(t) -F(t)|&gt;\epsilon)\leq 2 e^{-2n\epsilon^2}\]</div>
+<div class="proof remark admonition" id="remark-12">
+<p class="admonition-title"><span class="caption-number">Remark 1.5 </span></p>
+<section class="remark-content" id="proof-content">
+<p>Si l’on note <span class="math notranslate nohighlight">\(D_n\)</span> ce supremum, alors <span class="math notranslate nohighlight">\(\mathbb{P}(D_n&gt;0.04)\leq 0.1\)</span> dès que <span class="math notranslate nohighlight">\(n\geq 996\)</span>. Et dès <span class="math notranslate nohighlight">\(n=1992\)</span>, cette majoration chute à <span class="math notranslate nohighlight">\(1\%\)</span>.</p>
+</section>
+</div></section>
+</div></div>
+<div class="docutils">
+</div>
+</div></div>
+<div class="exercise admonition" id="exer04">
+
+<p class="admonition-title"><span class="caption-number">Exercise 1.1 </span></p>
+<section id="exercise-content">
+<p>On considère une suite <span class="math notranslate nohighlight">\((X_n)\)</span> de variables aléatoires réelles de Loi de Cauchy (c’est-à-dire de densité <span class="math notranslate nohighlight">\(x\mapsto \frac{1}{\pi(1+x^2)}\)</span>). Calculer la loi de la moyenne empirique de ces variables à l’aide de la fonction caractéristique. Que remarque-t-on ?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>La fonction caractéristique d’une loi de Cauchy est</p>
+<div class="math notranslate nohighlight">
+\[t \mapsto e^{-|t|}\]</div>
+<p>Alors la fonction caractéristique de la moyenne empirique vérifie pour <span class="math notranslate nohighlight">\(t\in \R\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \varphi_{\frac{1}{n}\sum_{i=1}^n X_i}(t) =\varphi_{\sum_{i=1}^n X_i}(\frac{t}{n}) =  \prod_{i=1}^n \varphi_{X_i}(\frac{t}{n})= \left(e^{-|\frac{t}{n}|}\right)^n =e^{-|t|}.\]</div>
+<p>On reconnait alors la fonction caractéristique d’une loi de Cauchy !</p>
+<p>On remarque qu’en particulier que la moyenne empirique ne converge pas presque surement vers une constante. Ceci n’est pas trop étonnant, puisque la loi de Cauchy n’a pas d’espérance vers laquelle converger.</p>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="exer02">
+
+<p class="admonition-title"><span class="caption-number">Exercise 1.2 </span></p>
+<section id="exercise-content">
+<p>On suppose que <span class="math notranslate nohighlight">\(X\)</span> admette un moment d’ordre 4. Montrer les convergences <span class="math notranslate nohighlight">\(L^2\)</span> et presque sûre de la variance empirique d’un échantillon de réalisation de variables indépendante de même loi que X, et donner la limite. Que dire de la vitesse de convergence ?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Nous notons <span class="math notranslate nohighlight">\(m=\mathbb{E}(X)\)</span> et <span class="math notranslate nohighlight">\(\sigma^2=V(X)\)</span>.</p>
+<p>La loi forte des grands nombres appliquée deux fois nous assure que</p>
+<div class="math notranslate nohighlight">
+\[S_X^2 = \frac{\sum_{i=1}^n(X_i-\overline{X})^2}{n-1} =\frac{n}{n-1}\left(\frac{1}{n}\sum_{i=1}^n(X_i-m)^2\right) + \frac{n}{n-1}(\overline{X}-m)^2 \overset{L^2 ; p.s.}{\to} \sigma^2 + 0.\]</div>
+<p>Le théorème central limite  nous assure que la convergence (en loi) sera en <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{n}}\)</span>.</p>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="exer01">
+
+<p class="admonition-title"><span class="caption-number">Exercise 1.3 </span></p>
+<section id="exercise-content">
+<p>Montrer que la fonction de répartition empirique vérifie les propriétés d’une fonction de répartition : limites en <span class="math notranslate nohighlight">\(±\infty\)</span>, continuité à droite et limite à gauche.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Il s’agit en fait de la fonction de répartition d’une variable aléatoire uniforme sur <span class="math notranslate nohighlight">\(\{x_1, ...,x_n\}\)</span>, et vérifie donc toute propriété d’une fonction de répartition</p>
+</div>
+</section>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch1sec2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>Les expériences statistiques et les statistiques</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ch1sec4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.4. </span>Lois Usuelles et leurs tabulations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By P. Fraux
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Lien vers la page principale du cours <a href="https://p-fraux.github.io/Cours-Mathematiques/intro.html"> Mathematiques de première année</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
