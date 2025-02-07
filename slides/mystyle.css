@@ -1,0 +1,33 @@
+/*-- scss:defaults --*/
+/*-- scss:defaults --*/
+
+
+
+/*-- scss:rules --*/
+
+/*.reveal .slide-number {
+  color: $link-color;
+}*/
+  
+.reveal .custom-font-size {
+        font-size: 0.6em;
+      }
+
+/*-- scss:rules --*/
+
+
+/*.slide-background-content{
+  background-image: url(test.png);
+  background-size: 100% 100%;
+}
+.sectionhead {
+  font-size: 1em;
+  text-align: center;
+  color: $presentation-heading-color;
+  font-family: $presentation-heading-font;
+  background-color: $body-bg;
+  margin: 1px;
+  padding: 2px 2px 2px 2px;
+  width: 120px;
+  border-left: 10px solid;
+}*/
