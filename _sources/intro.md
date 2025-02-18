@@ -36,17 +36,7 @@ On introduit en douceur le vocabulaire à l'aide des statistiques communément c
 ^^^
 On s'intéresse dans cette partie à l'estimation. On y introduit un estimateur essentiel : l'estimateur de maximum de vraisemblance;
 ```
-```{card} 
-:link: ch3intro
-:link-type: doc
-:text-align: center 
-:shadow: md 
-:class-header: bg-light
 
-<i class="fas fa-book fa-fw"></i> **Filtrage linéaire invariant par décalage**
-^^^
-L'objectif est d'étudier le filtrage des signaux déterministes et aléatoires stationnaires.
-```
 ```{card} 
 :link: ch4intro
 :link-type: doc
