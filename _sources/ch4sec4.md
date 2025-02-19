@@ -76,29 +76,29 @@ $$ ||Y-X\theta||_{\R^n}^2 = ||Y-\hat{Y}||_{\R^n}^2+||\hat{Y}-X\theta||_{\R^n}^2$
 
 avec $\hat{Y}$ la projection orthogonale de $Y$ sur l'espace vectoriel engendré par les colonnes de X. 
 
-Comme $X$ est de plein rang, la matrice $X^tX$ est définie positive, donc inversible. Notons H la matrice (appelé _hat matrix_, ou _matrice d'influence_) la matrice :
+Comme $X$ est de plein rang, la matrice $X^TX$ est définie positive, donc inversible. Notons H la matrice (appelé _hat matrix_, ou _matrice d'influence_) la matrice :
 
-$$H=X(X^tX)^{-1}X^t$$
+$$H=X(X^TX)^{-1}X^T$$
 
-et remarquons que cette matrice laisse invariant les colonnes de X (puisque $HX=X$) et tout vecteur $V$ orthogonal aux colonnes de X sont dans le noyau de H (car $X^tV=0$). Donc H est le projecteur orthogonal sur le sous-espace engendré par les colonnes de X.
+et remarquons que cette matrice laisse invariant les colonnes de X (puisque $HX=X$) et tout vecteur $V$ orthogonal aux colonnes de X sont dans le noyau de H (car $X^TV=0$). Donc H est le projecteur orthogonal sur le sous-espace engendré par les colonnes de X.
 
 En particulier, 
 
-$$\hat{Y} = HY=X(X^tX)^{-1}X^tY$$
+$$\hat{Y} = HY=X(X^TX)^{-1}X^TY$$
 
 Donc puisque X est de plein rang, il existe un unique minimiseur $\theta$ (car il doit vérifier $X\theta=\hat{Y}$) :
 
-$$\hat{\theta}=(X^tX)^{-1}X^tY.$$
+$$\hat{\theta}=(X^TX)^{-1}X^TY.$$
 
 
-Enfin, pour le biais, comme $X^tX$ est inversible, nous avons que 
+Enfin, pour le biais, comme $X^TX$ est inversible, nous avons que 
 
-$$\hat{\theta}-\theta_0= \hat{\theta}-\left((X^tX)^{-1}X^tX\right)\theta_0)= (X^tX)^{-1}X^tY-(X^tX)^{-1}X^t(Y-U) $$
-$$= (X^tX)^{-1}X^t\left(U\right)$$
+$$\hat{\theta}-\theta_0= \hat{\theta}-\left((X^TX)^{-1}X^TX\right)\theta_0)= (X^TX)^{-1}X^TY-(X^TX)^{-1}X^T(Y-U) $$
+$$= (X^TX)^{-1}X^T\left(U\right)$$
 
 Donc par linéarité, 
 
-$$ \mathbb{E}(\hat{\theta}-\theta_0)= (X^tX)^{-1}X^t\left(\mathbb{E}(U)\right)=0$$
+$$ \mathbb{E}(\hat{\theta}-\theta_0)= (X^TX)^{-1}X^T\left(\mathbb{E}(U)\right)=0$$
 ```
 
 ```{prf:remark}

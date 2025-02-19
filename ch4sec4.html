@@ -34,10 +34,10 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
     <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
@@ -493,24 +493,24 @@ $<span class="math notranslate nohighlight">\(\mathbf{Y}=\begin{pmatrix}
 <div class="math notranslate nohighlight">
 \[ ||Y-X\theta||_{\R^n}^2 = ||Y-\hat{Y}||_{\R^n}^2+||\hat{Y}-X\theta||_{\R^n}^2\]</div>
 <p>avec <span class="math notranslate nohighlight">\(\hat{Y}\)</span> la projection orthogonale de <span class="math notranslate nohighlight">\(Y\)</span> sur l’espace vectoriel engendré par les colonnes de X.</p>
-<p>Comme <span class="math notranslate nohighlight">\(X\)</span> est de plein rang, la matrice <span class="math notranslate nohighlight">\(X^tX\)</span> est définie positive, donc inversible. Notons H la matrice (appelé <em>hat matrix</em>, ou <em>matrice d’influence</em>) la matrice :</p>
+<p>Comme <span class="math notranslate nohighlight">\(X\)</span> est de plein rang, la matrice <span class="math notranslate nohighlight">\(X^TX\)</span> est définie positive, donc inversible. Notons H la matrice (appelé <em>hat matrix</em>, ou <em>matrice d’influence</em>) la matrice :</p>
 <div class="math notranslate nohighlight">
-\[H=X(X^tX)^{-1}X^t\]</div>
-<p>et remarquons que cette matrice laisse invariant les colonnes de X (puisque <span class="math notranslate nohighlight">\(HX=X\)</span>) et tout vecteur <span class="math notranslate nohighlight">\(V\)</span> orthogonal aux colonnes de X sont dans le noyau de H (car <span class="math notranslate nohighlight">\(X^tV=0\)</span>). Donc H est le projecteur orthogonal sur le sous-espace engendré par les colonnes de X.</p>
+\[H=X(X^TX)^{-1}X^T\]</div>
+<p>et remarquons que cette matrice laisse invariant les colonnes de X (puisque <span class="math notranslate nohighlight">\(HX=X\)</span>) et tout vecteur <span class="math notranslate nohighlight">\(V\)</span> orthogonal aux colonnes de X sont dans le noyau de H (car <span class="math notranslate nohighlight">\(X^TV=0\)</span>). Donc H est le projecteur orthogonal sur le sous-espace engendré par les colonnes de X.</p>
 <p>En particulier,</p>
 <div class="math notranslate nohighlight">
-\[\hat{Y} = HY=X(X^tX)^{-1}X^tY\]</div>
+\[\hat{Y} = HY=X(X^TX)^{-1}X^TY\]</div>
 <p>Donc puisque X est de plein rang, il existe un unique minimiseur <span class="math notranslate nohighlight">\(\theta\)</span> (car il doit vérifier <span class="math notranslate nohighlight">\(X\theta=\hat{Y}\)</span>) :</p>
 <div class="math notranslate nohighlight">
-\[\hat{\theta}=(X^tX)^{-1}X^tY.\]</div>
-<p>Enfin, pour le biais, comme <span class="math notranslate nohighlight">\(X^tX\)</span> est inversible, nous avons que</p>
+\[\hat{\theta}=(X^TX)^{-1}X^TY.\]</div>
+<p>Enfin, pour le biais, comme <span class="math notranslate nohighlight">\(X^TX\)</span> est inversible, nous avons que</p>
 <div class="math notranslate nohighlight">
-\[\hat{\theta}-\theta_0= \hat{\theta}-\left((X^tX)^{-1}X^tX\right)\theta_0)= (X^tX)^{-1}X^tY-(X^tX)^{-1}X^t(Y-U) \]</div>
+\[\hat{\theta}-\theta_0= \hat{\theta}-\left((X^TX)^{-1}X^TX\right)\theta_0)= (X^TX)^{-1}X^TY-(X^TX)^{-1}X^T(Y-U) \]</div>
 <div class="math notranslate nohighlight">
-\[= (X^tX)^{-1}X^t\left(U\right)\]</div>
+\[= (X^TX)^{-1}X^T\left(U\right)\]</div>
 <p>Donc par linéarité,</p>
 <div class="math notranslate nohighlight">
-\[ \mathbb{E}(\hat{\theta}-\theta_0)= (X^tX)^{-1}X^t\left(\mathbb{E}(U)\right)=0\]</div>
+\[ \mathbb{E}(\hat{\theta}-\theta_0)= (X^TX)^{-1}X^T\left(\mathbb{E}(U)\right)=0\]</div>
 </div>
 <div class="proof remark admonition" id="remark-1">
 <p class="admonition-title"><span class="caption-number">Remark 4.1 </span></p>

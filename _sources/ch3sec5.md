@@ -24,11 +24,11 @@ $$\frac{X_n}{n} \overset{p.s.}{\to} p.$$
 
 On peut utiliser la vitesse de convergence donnée par le théorème central limite :
 
-$$\frac{X_n-p}{\sqrt{n p(1-p)}} \overset{Loi}{\to} \mathcal{N}(0,1)$$
+$$\frac{X_n-np}{\sqrt{n p(1-p)}} \overset{Loi}{\to} \mathcal{N}(0,1)$$
 
 En effet, si cela ne nous donne malheureusement pas encore une statistique, sous $H_0$ l'on aura 
 
-$$Z_n:=\frac{X_n-p
+$$Z_n:=\frac{X_n-np
 _0}{\sqrt{n p_0(1-p_0)}} \overset{Loi}{\to} \mathcal{N}(0,1)$$
 
 On pourra alors pour notre test comparer $Z_n$ à une valeur critique, fonction du risque de $1^{re}$ espèce choisi. Pour que cette approximation soit valide, il faut prendre n suffisamment grand ($n\geq 30$) et éviter les proportions $p$ trop faibles ou trop importantes ($np_0>5$ ou $n(1-p_0)>5$).
