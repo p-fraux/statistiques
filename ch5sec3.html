@@ -34,10 +34,10 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
@@ -495,8 +495,8 @@
 <p>Pour calculer la statistique <span class="math notranslate nohighlight">\(d_n\)</span>, il suffit de remarquer que <span class="math notranslate nohighlight">\(F\)</span> est croissant et que <span class="math notranslate nohighlight">\(\hat{F_n}\)</span> ne change qu’en les points <span class="math notranslate nohighlight">\(x_i\)</span>. Ce point va nous permettre de simplifier la recherche du supremum. Notons <span class="math notranslate nohighlight">\((x^*_1,...,x^*_n)\)</span> les observations rangées par ordre croissant (on parle de la statistique de l’ordre), et supposons pour simplifier qu’elles soient toutes distinctes, c’est-à-dire que <span class="math notranslate nohighlight">\(\forall i\in \{1,...,n-1\}, x^*_i&lt;x^*_{i+1}\)</span> (ce qui est presque-sûr puisque X est supposé continu). On a alors la réécriture</p>
 <div class="math notranslate nohighlight">
 \[d_n = \sup\limits_{t\in \R} |\hat{F_n}(t)-F(t)| = \sup_{i\in \{1,...,n\}}\left(\max[|\frac{i-1}{n}-F(x^*_i)|,|\frac{i}{n}-F(x^*_i)| ]\right).\]</div>
-<p>Dit autrement, il suffit de regarder l’écart au niveau des observations, comme illustré dans la figure <span class="xref std std-ref">CalculKolmogorov</span> :</p>
-<a class="reference internal image-reference" href="_images/Kolmogorov.png" id="calculkolmogorov"><img alt="CalculKolmogorov" class="align-center" id="calculkolmogorov" src="_images/Kolmogorov.png" style="width: 600px;" /></a>
+<p>Dit autrement, il suffit de regarder l’écart au niveau des observations, comme illustré dans la figure suivante :</p>
+<a class="reference internal image-reference" href="_images/Kolmogorov.png" id="calculkolmogorov"><img alt="_images/Kolmogorov.png" class="align-center" id="calculkolmogorov" src="_images/Kolmogorov.png" style="width: 600px;" /></a>
 </div>
 <div class="exercise dropdown admonition" id="exer20">
 

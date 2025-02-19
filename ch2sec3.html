@@ -34,10 +34,10 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
@@ -459,7 +459,7 @@
 <div class="math notranslate nohighlight">
 \[\partial_\theta \ln\left(f(\mathbf{x},\theta) \right)\]</div>
 <ul class="simple">
-<li><p>Chercher le maximum de la Log-vraisemblance parmi les points d’annulation de la fonction score et le bord de <span class="math notranslate nohighlight">\(\Theta\)</span> si l’hypothèse <code class="xref eq docutils literal notranslate"><span class="pre">H2</span></code> n’est pas vérifiée.</p></li>
+<li><p>Chercher le maximum de la Log-vraisemblance parmi les points d’annulation de la fonction score et le bord de <span class="math notranslate nohighlight">\(\Theta\)</span> si l’hypothèse H2 n’est pas vérifiée.</p></li>
 </ul>
 <p>Pour vérifier qu’un point est bien un maximum, l’on pourra sur un intervalle utiliser un argument de convexité (<em>i.e.</em> calculer la dérivée seconde et étudier son signe), ou encore tracer un tableau de variation pour éliminer les optimums locaux des candidats possibles.</p>
 </div>
@@ -631,7 +631,7 @@
 </div><div class="proof property dropdown admonition" id="property-7">
 <p class="admonition-title"><span class="caption-number">Property 2.6 </span> (Convergence de l’EMV)</p>
 <section class="property-content" id="proof-content">
-<p>On considère un modèle identifiable d’une suite de variable aléatoire indépendante de même loi, avec l’expérience statistique qui est dominée, vérifie <span class="xref std std-ref">H1</span> et <span class="xref std std-ref">H2</span>, et que la Log-vraisemblance est continue. On suppose de plus que l’adhérence de <span class="math notranslate nohighlight">\(\Theta\)</span> est compacte, et on rappelle que {le vrai paramètre recherché <span class="math notranslate nohighlight">\(\theta_0\)</span> est} dans <span class="math notranslate nohighlight">\({\Theta}\)</span> un ouvert.</p>
+<p>On considère un modèle identifiable d’une suite de variable aléatoire indépendante de même loi, avec l’expérience statistique qui est dominée, vérifie H1 et H2, et que la Log-vraisemblance est continue. On suppose de plus que l’adhérence de <span class="math notranslate nohighlight">\(\Theta\)</span> est compacte, et on rappelle que {le vrai paramètre recherché <span class="math notranslate nohighlight">\(\theta_0\)</span> est} dans <span class="math notranslate nohighlight">\({\Theta}\)</span> un ouvert.</p>
 <p>On suppose de plus qu’il existe une suite de statistique <span class="math notranslate nohighlight">\(\hat{\theta}_n\)</span> qui calcule un maximum de vraisemblance avec probabilité 1 sous la loi <span class="math notranslate nohighlight">\( \mathbb{P}_{\theta_0}\)</span>, c’est-à-dire que :</p>
 <div class="math notranslate nohighlight">
 \[\mathbb{P}_{\theta_0}\left( \forall \theta, f(X_1,...X_n, \hat{\theta}_n(X_1,...X_n)) \geq   f(X_1,...X_n, \theta) \right)=1.\]</div>

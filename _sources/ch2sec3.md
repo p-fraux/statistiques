@@ -31,7 +31,7 @@ Attention cependant, il n’y a pas forcément unicité de la solution de l’é
 
 $$\partial_\theta \ln\left(f(\mathbf{x},\theta) \right)$$
 
-- Chercher le maximum de la Log-vraisemblance parmi les points d'annulation de la fonction score et le bord de $\Theta$ si l'hypothèse {eq}`H2` n'est pas vérifiée. 
+- Chercher le maximum de la Log-vraisemblance parmi les points d'annulation de la fonction score et le bord de $\Theta$ si l'hypothèse H2 n'est pas vérifiée. 
 
 Pour vérifier qu'un point est bien un maximum, l'on pourra sur un intervalle utiliser un argument de convexité (_i.e._ calculer la dérivée seconde et étudier son signe), ou encore tracer un tableau de variation pour éliminer les optimums locaux des candidats possibles.
 :::
@@ -257,7 +257,7 @@ $$ \theta_1\neq \theta_2 \iff \mathbb{P}_{\theta_1}\neq \mathbb{P}_{\theta_2}$$
 
 ::::{prf:property} Convergence de l'EMV
 :class: dropdown
-On considère un modèle identifiable d'une suite de variable aléatoire indépendante de même loi, avec l'expérience statistique qui est dominée, vérifie {ref}`H1` et {ref}`H2`, et que la Log-vraisemblance est continue. On suppose de plus que l'adhérence de $\Theta$ est compacte, et on rappelle que {le vrai paramètre recherché $\theta_0$ est} dans ${\Theta}$ un ouvert.
+On considère un modèle identifiable d'une suite de variable aléatoire indépendante de même loi, avec l'expérience statistique qui est dominée, vérifie H1 et H2, et que la Log-vraisemblance est continue. On suppose de plus que l'adhérence de $\Theta$ est compacte, et on rappelle que {le vrai paramètre recherché $\theta_0$ est} dans ${\Theta}$ un ouvert.
 
 On suppose de plus qu'il existe une suite de statistique $\hat{\theta}_n$ qui calcule un maximum de vraisemblance avec probabilité 1 sous la loi $ \mathbb{P}_{\theta_0}$, c'est-à-dire que :
 

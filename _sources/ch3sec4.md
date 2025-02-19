@@ -41,7 +41,7 @@ Comme nous avons généralisé les hypothèses, le résultat précédent est per
 
 :::{prf:theorem}
 :class: dropdown
-:name: loirapportvraissemblance
+:label: loirapportvraissemblance
 On considère un modèle identifiable, régulier (voir {ref}`dominee`), paramétrisé par $\R$, d'information de Fisher strictement positive ($I_n(f)(\theta) >0$) et de dérivée seconde de la Log-vraisemblance uniformément continue en $\theta$. 
 On suppose aussi que le modèle est issu du tirage de variables aléatoire indépendante et de même loi.
 

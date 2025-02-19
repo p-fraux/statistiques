@@ -34,10 +34,10 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="/Users/parent/opt/anaconda3/lib/python3.9/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/mystyle.css?v=0f3ba4bc" />
@@ -462,7 +462,7 @@ $<span class="math notranslate nohighlight">\(=  exp(-\frac{1}{2}\sum_i \mu^2\la
 <p class="admonition-title"><span class="caption-number">Proposition 4.2 </span> (Décomposition)</p>
 <section class="proposition-content" id="proof-content">
 <p>Soit <span class="math notranslate nohighlight">\(X=(X_1,...,X_n)^t\)</span> un vecteur gaussien centré de matrice de covariance <span class="math notranslate nohighlight">\(K\)</span> et soit <span class="math notranslate nohighlight">\(M\in S_n^+\)</span> une matrice symétrique semi-définie positive. On considère également <span class="math notranslate nohighlight">\((Z_i)\)</span> des variables aléatoires indépendantes de loi <span class="math notranslate nohighlight">\(\chi^2_1\)</span>.</p>
-<p>Alors si l’on note <span class="math notranslate nohighlight">\(K=LL^t\)</span> une décomposition de Cholesky (<span class="math notranslate nohighlight">\(L\)</span> triangulaire supérieure, voir <span class="xref std std-ref">Choleski</span>) et <span class="math notranslate nohighlight">\((\lambda_i)\)</span> les valeurs propres avec multiplicités de la matrice <span class="math notranslate nohighlight">\(L^tML\)</span>, la variable aléatoire <span class="math notranslate nohighlight">\(X^tMX\)</span> est distribué comme <span class="math notranslate nohighlight">\(\sum_i \lambda_i Z\)</span>.</p>
+<p>Alors si l’on note <span class="math notranslate nohighlight">\(K=LL^t\)</span> une décomposition de Cholesky (<span class="math notranslate nohighlight">\(L\)</span> triangulaire supérieure, voir <a class="reference internal" href="ch7sec3.html#chol"><span class="std std-ref">Compléments d’algèbre linéaire</span></a>) et <span class="math notranslate nohighlight">\((\lambda_i)\)</span> les valeurs propres avec multiplicités de la matrice <span class="math notranslate nohighlight">\(L^tML\)</span>, la variable aléatoire <span class="math notranslate nohighlight">\(X^tMX\)</span> est distribué comme <span class="math notranslate nohighlight">\(\sum_i \lambda_i Z\)</span>.</p>
 <div class="proof admonition" id="proof">
 <p>Proof. Sans perte de généralité, on peut supposer (on ne travaille qu’avec des égalités en loi) que <span class="math notranslate nohighlight">\(X=LY\)</span> avec <span class="math notranslate nohighlight">\(Y\sim \mathcal{N}(0,I_n)\)</span> un vecteur gaussien standard.</p>
 <p>D’après le théorème spectral, il existe <span class="math notranslate nohighlight">\(O\)</span> une matrice orthogonale telle que</p>

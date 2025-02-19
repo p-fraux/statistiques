@@ -50,7 +50,7 @@ Sous l'hypothèse $H_0$, la suite de variables aléatoire suivante converge en l
 $$ T_n= \sum_{k=1}^l \frac{(W^{(k)}-np_k)^2}{n p_k} \overset{Loi}{\to} \chi^2_{l-1}$$
 
 ```{prf:proof}
-Nous allons utiliser une généralisation du théorème {ref}`loirapportvraissemblance` à la statistique de test du rapport de vraisemblance pour un paramètre dans $\R^n$, qui dit que dans ce cas, le logarithme du maximum du rapport de vraisemblance converge en loi vers une $\chi^2$ à n degré de liberté.
+Nous allons utiliser une généralisation du théorème {prf:ref}`loirapportvraissemblance` à la statistique de test du rapport de vraisemblance pour un paramètre dans $\R^n$, qui dit que dans ce cas, le logarithme du maximum du rapport de vraisemblance converge en loi vers une $\chi^2$ à n degré de liberté.
 
 
 La vraisemblance d'un tirage sous la loi $F_0$ (avec $p_l=1-\sum_{k<l}p_k$ ) est alors 

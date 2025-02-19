@@ -56,7 +56,7 @@ Considérons deux sous espaces vectoriels $E$ et $E'$ d'un espace gaussien. Alor
 :class: dropdown
 Soit $X=(X_1,...,X_n)^t$ un vecteur gaussien centré de matrice de covariance $K$ et soit $M\in S_n^+$ une matrice symétrique semi-définie positive. On considère également $(Z_i)$ des variables aléatoires indépendantes de loi $\chi^2_1$.
     
-Alors si l'on note $K=LL^t$ une décomposition de Cholesky ($L$ triangulaire supérieure, voir {ref}`Choleski`) et $(\lambda_i)$ les valeurs propres avec multiplicités de la matrice $L^tML$, la variable aléatoire $X^tMX$ est distribué comme $\sum_i \lambda_i Z$.
+Alors si l'on note $K=LL^t$ une décomposition de Cholesky ($L$ triangulaire supérieure, voir {ref}`Chol`) et $(\lambda_i)$ les valeurs propres avec multiplicités de la matrice $L^tML$, la variable aléatoire $X^tMX$ est distribué comme $\sum_i \lambda_i Z$.
 
 ```{prf:proof}
 Sans perte de généralité, on peut supposer (on ne travaille qu'avec des égalités en loi) que $X=LY$ avec $Y\sim \mathcal{N}(0,I_n)$ un vecteur gaussien standard. 

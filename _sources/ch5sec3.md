@@ -81,12 +81,12 @@ Pour calculer la statistique $d_n$, il suffit de remarquer que $F$ est croissant
 
 $$d_n = \sup\limits_{t\in \R} |\hat{F_n}(t)-F(t)| = \sup_{i\in \{1,...,n\}}\left(\max[|\frac{i-1}{n}-F(x^*_i)|,|\frac{i}{n}-F(x^*_i)| ]\right).$$
 
-Dit autrement, il suffit de regarder l'écart au niveau des observations, comme illustré dans la figure {ref}`CalculKolmogorov` :
+Dit autrement, il suffit de regarder l'écart au niveau des observations, comme illustré dans la figure suivante :
 
 
 
 ```{image} Kolmogorov.png
-:alt: CalculKolmogorov
+:label: CalculKolmogorov
 :width: 600px
 :align: center
 :name: CalculKolmogorov
