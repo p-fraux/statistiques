@@ -26,7 +26,7 @@ On donne deux critères essentiels que doivent vérifier des estimateurs.
 
 <i class="fas fa-book fa-fw"></i> **Efficacité d’un estimateur**
 ^^^
-On étudie la variance d'un estimateur à l'aide du theoreme de CRamer et Rao. On définit alors l'éfficacité d'un estimateur.
+On étudie la variance d'un estimateur à l'aide du theoreme de Cramer et Rao. On définit alors l'éfficacité d'un estimateur.
 ```
 ```{card} 
 :link: ch2sec3

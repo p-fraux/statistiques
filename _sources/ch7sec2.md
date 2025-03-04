@@ -34,8 +34,9 @@ $$\forall a<b<c,\quad \frac{f(a)-f(b)}{a-b}\leq \frac{f(a)-f(c)}{a-c}\leq \frac{
 
 
 ::::{prf:theorem}
-Soit $(\Omega, \mathcal{T},\mathbb{P})$ un espace probabilisé.\newline
-    Soit f une fonction convexe sur un intervalle réel $[a,b]$ et X une variable aléatoire à valeurs dans I, dont l'espérance $\mathbb{E}(f(X))$ existe, alors 
+Soit $(\Omega, \mathcal{T},\mathbb{P})$ un espace probabilisé.
+
+Soit f une fonction convexe sur un intervalle réel $[a,b]$ et X une variable aléatoire à valeurs dans I, dont l'espérance $\mathbb{E}(f(X))$ existe, alors 
 
 $$ f(\mathbb{E}(X))\leq \mathbb{E}(f(X))$$
 
