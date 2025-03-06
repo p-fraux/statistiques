@@ -83,7 +83,7 @@ On discute de notions plus avancés utiles lors d'implémentation concrète en g
 :::{admonition} Solution, a ne regarder qu'APRES les scéances de TD
 :class: dropdown
 
-<i class="fas fa-file-pdf" style="color: red;"></i> Les feuilles d'exercices de TD avec une proposition de correction sont disponible ici  {download}`Polycopié 3EA Initiation aux statistiques - Exercices et problèmes avec correction <./downloads/Exercices_et_corrections_STATS.pdf>`
+<i class="fas fa-file-pdf" style="color: red;"></i> Les feuilles d'exercices de TD avec une proposition de correction sont disponible ici  {download}`3EA Initiation aux statistiques - Exercices et problèmes avec correction <./downloads/Exercices_et_corrections_STATS.pdf>`
 
 :::
 
